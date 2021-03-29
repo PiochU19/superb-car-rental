@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 # URLs imports
-    path('api/', include('account.urls')),
+    path('', include('account.urls')),
 
 # JSON Web Token Endpoints
     path('api/token/', TokenObtainPairView.as_view()),

@@ -33,11 +33,11 @@ class RegisterClientSerializer(serializers.ModelSerializer):
 		client_data = validated_data.pop('client')
 
 		password = validated_data.pop('password', None)
-		instance = self.Meta.model(**validated_data)
+		user = self.Meta.model(is_active=False, is_client=True, **validated_data)
 		if password is not None:
-			instance.set_password(password)
-		instance.save()
+			user.set_password(password)
+		user.save()
 
-		Client.objects.create(user=instance, **client_data)
+		Client.objects.create(user=user, **client_data)
 
-		return instance
+		return user
