@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from account.api.serializers import (
 	RegisterClientSerializer,
+	RegisterEmployeeSerializer,
 )
 from .models import User
 
@@ -27,7 +28,22 @@ class RegisterClientView(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-from django.http import HttpResponse
+class RegisterEmployeeView(APIView):
+	"""
+	Employee Registration
+	"""
+	def post(self, request):
+		data = request.data
+
+		serializer = RegisterEmployeeSerializer(data=data)
+
+		if serializer.is_valid():
+			serializer.save()
+
+			return Response("Account created", status=status.HTTP_201_CREATED)
+
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 # Imports for email confirmation
 from django.views import View
 from account.helpers import send_mail_confirmation
@@ -35,6 +51,7 @@ from account.models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from .tokens import token_generator
+from django.shortcuts import redirect
 
 
 class EmailActivateView(View):
@@ -52,6 +69,6 @@ class EmailActivateView(View):
 				user.is_active = True
 				user.save()
 
-				return HttpResponse('git')
+				return redirect('https://facebook.com')
 			else:
-				return HttpResponse('nie git')
+				return HttpResponse('https://error404.com')
