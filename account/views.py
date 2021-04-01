@@ -1,9 +1,10 @@
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from account.api.serializers import (
 	RegisterClientSerializer,
 	RegisterEmployeeSerializer,
+	UserPermissionsSerializer,
 )
 from .models import User
 
@@ -12,6 +13,8 @@ class RegisterClientView(APIView):
 	"""
 	Client Registration
 	"""
+	permission_classes = [permissions.AllowAny]
+
 	def post(self, request):
 		data = request.data
 
@@ -44,6 +47,18 @@ class RegisterEmployeeView(APIView):
 
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class UserPermissionsView(APIView):
+	"""
+	GET request returning fields: 'is_client',
+	'is_employee' and 'is_superuser'
+	"""
+	def get(self, request):
+		serializer = UserPermissionsSerializer(request.user)
+
+		return Response(serializer.data)
+
+
 # Imports for email confirmation
 from django.views import View
 from account.helpers import send_mail_confirmation
@@ -58,6 +73,8 @@ class EmailActivateView(View):
 	"""
 	View where user activates acc
 	"""
+	permission_classes = [permissions.AllowAny]
+
 	def get(self, request, uidb64, token):
 			try:
 				uid = force_text(urlsafe_base64_decode(uidb64))
@@ -69,6 +86,6 @@ class EmailActivateView(View):
 				user.is_active = True
 				user.save()
 
-				return redirect('https://facebook.com')
+				return redirect("http://localhost:8080/")
 			else:
-				return HttpResponse('https://error404.com')
+				return redirect('https://error404.com')

@@ -69,3 +69,12 @@ class RegisterEmployeeSerializer(serializers.ModelSerializer):
 		user.save()
 
 		return user
+
+
+class UserPermissionsSerializer(serializers.HyperlinkedModelSerializer):
+	"""
+	Returning permissions
+	"""
+	class Meta:
+		model = User
+		fields = ('is_client', 'is_employee', 'is_superuser')
