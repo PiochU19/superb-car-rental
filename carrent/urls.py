@@ -8,8 +8,11 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-# URLs imports
+# account URLs import
     path('', include('account.urls')),
+
+# car URLs import
+    path('api/car/', include('car.urls')),
 
 # JSON Web Token Endpoints
     path('api/token/', TokenObtainPairView.as_view()),

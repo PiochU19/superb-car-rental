@@ -54,6 +54,9 @@ INSTALLED_APPS = [
 
 # Handling accounts
     'account',
+
+# Handling cars
+    'car',
 ]
 
 # CORS SETTINGS
