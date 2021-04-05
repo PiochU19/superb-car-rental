@@ -1,0 +1,65 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+
+.indexMain {
+	font-family: FiraCode;
+	flex: auto;
+	display: flex;
+	flex-direction: column;
+	color: $black;
+}
+
+.line_between {
+	color: $black;
+	width: 90%;
+}
+
+.index_welcome {
+	text-align: center;
+	font-family: FiraCode;
+}
+
+.index_up {
+	height: auto;
+}
+
+.index_up_cars {
+	display: flex;
+	flex-wrap: wrap;
+	padding-bottom: 55px;
+	padding-top: 20px;
+}
+
+.index_up_cars div {
+	flex: 1;
+	text-align: center;
+	padding-bottom: 10px;
+	transition: all .2s ease-in-out;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+
+.car_image {
+	height: 240px;;
+	width: 426px;
+}
+
+.index_benefits {
+	padding-top: 10px;
+	flex: auto;
+	display: flex;
+	justify-content: space-between;
+	gap: 50px;
+}
+
+.index_benefits div {
+	flex: 1;
+	text-align: center;
+}
+
+.car_link {
+	text-decoration: none;
+	color: $black;
+}
