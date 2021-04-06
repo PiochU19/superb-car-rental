@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import (
 	Car,
-	CarImage,
 )
 
 @admin.register(Car)
@@ -20,6 +19,3 @@ class CarAdmin(admin.ModelAdmin):
 		('Engine', {'fields': ('engine', 'fuel_type', 'hourse_power',)}),
 		('Image', {'fields': ('main_image',)}),
 	)
-
-
-admin.site.register(CarImage)

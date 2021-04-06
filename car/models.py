@@ -44,19 +44,3 @@ class Car(models.Model):
 		string = string.translate(dictionary)
 		self.slug = slugify(string)
 		super(Car, self).save(*args, **kwargs)
-
-
-
-class CarImage(models.Model):
-	"""
-	Car images (table related
-	to car table)
-	"""
-	car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car_images')
-	image = models.ImageField(upload_to='car_images/')
-
-	class Meta:
-		ordering = ('car',)
-
-	def __str__(self):
-		return f"{self.car} {self.image}"

@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from car.models import (
 	Car,
-	CarImage,
 )
 
 
@@ -16,11 +15,15 @@ class CarListSerializer(serializers.ModelSerializer):
 					'engine', 'fuel_type', 'hourse_power', 'main_image',)
 
 
-class CarImageSerializer(serializers.ModelSerializer):
+class CarDetailSerializer(serializers.ModelSerializer):
 	"""
-	Serializer for all related
-	images to specific car
+	Serializer for dynamic
+	Next page returning detail
+	data about specific car
 	"""
 	class Meta:
-		model = CarImage
-		fields = ('image',)
+		model = Car
+		fields = ('brand', 'model', 'generation', 
+					'engine', 'fuel_type', 'year_of_production', 
+					'body_type', 'hourse_power', 'main_image', 
+					'price_per_day',)

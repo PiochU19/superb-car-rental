@@ -5,6 +5,7 @@ from rest_framework.response import Response
 
 from car.api.serializers import (
 	CarListSerializer,
+	CarDetailSerializer,
 )
 
 from car.models import (
@@ -23,5 +24,18 @@ class CarListView(APIView):
 
 		queryset = Car.objects.all()
 		serializer = CarListSerializer(queryset, many=True)
+
+		return Response(serializer.data)
+
+
+class CarDetailView(APIView):
+	"""
+	All detail about
+	specific car
+	"""
+	def get(self, request, slug):
+
+		queryset = Car.objects.get(slug=slug)
+		serializer = CarDetailSerializer(queryset, many=False)
 
 		return Response(serializer.data)
