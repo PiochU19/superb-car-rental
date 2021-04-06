@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../axios';
 
 import Link from 'next/link';
 
 import styles from './IndexMain.module.scss';
 
+const isClient = () => typeof window !== "undefined";
 
 const IndexMain = () => {
 
 	const[notLoading, setNotLoading] = useState(false);
 	const[cars, setCars] = useState('');
 
-	useEffect(() => {
-		axiosInstance
-			.get('car/')
-			.then((res) => {
-				setCars(res.data);
-				setNotLoading(true);
-			})
-	}, []);
+	if (isClient) {
+		useEffect(() => {
+			import('../../axios.js').then(axios => {
+				const axiosInstance = axios.default;
+
+				axiosInstance
+					.get('car/')
+					.then((res) => {
+						setCars(res.data);
+						setNotLoading(true);
+					});
+			});
+		}, []);
+	}
 
 	return (
 		<div className={styles.indexMain}>
