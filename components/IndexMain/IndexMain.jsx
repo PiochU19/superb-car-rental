@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
+import Router from 'next/router';
 
 import styles from './IndexMain.module.scss';
 

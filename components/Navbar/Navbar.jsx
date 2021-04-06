@@ -52,16 +52,24 @@ const Navbar = () => {
 						if (auth) {
 							if (userType === 'client') {
 								return (
-									<div>
-										<Link href='/profile' className={styles.header_left_svg}><UserSVG /></Link>
-										<Link href='/logout'><LogoutSVG /></Link>
+									<div className={styles.header_svg}>
+										<div className={styles.header_left_svg}> 
+											<Link href='/profile'><UserSVG /></Link>
+										</div>
+										<div>
+											<Link href='/logout'><LogoutSVG /></Link>
+										</div>
 									</div>
 								)
 							} else if (userType === 'employee') {
 								return (
-									<div>
-										<Link href='/panel'><div className={styles.header_left_svg}><SettingsSVG /></div></Link>
-										<Link href='/logout'><LogoutSVG /></Link>
+									<div className={styles.header_svg}>
+										<div className={styles.header_left_svg}>
+											<Link href='/panel'><SettingsSVG /></Link>
+										</div>
+										<div>
+											<Link href='/logout'><LogoutSVG /></Link>
+										</div>
 									</div>
 								)
 							}

@@ -3,10 +3,11 @@ import Navbar from '../components/Navbar/Navbar';
 import LoginMain from '../components/LoginMain/LoginMain';
 import Footer from '../components/Footer/Footer';
 
+
 export default function Home() {
   return (
     <>
-    	<HeadComponent>Superb Car Rental - login</HeadComponent>
+    	<HeadComponent>Superb Car Rental - Login</HeadComponent>
     	<Navbar />
     	<LoginMain />
     	<Footer />
