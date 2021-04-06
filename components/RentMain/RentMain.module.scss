@@ -1,0 +1,194 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+
+.rent_main {
+	display: flex;
+}
+
+.car_image {
+	height: 288px;;
+	width: 515px;
+	border-radius: 25px;
+	border: 3px solid $black;
+	padding: 5px;
+}
+
+.form_left {
+	padding-top: 40px;
+	flex: 4;
+	font-family: FiraCode;
+	display: flex;
+	flex-direction: column;
+}
+
+.button {
+	text-align: center;
+	display: flex;
+}
+
+.button_right {
+	flex: 5;
+	text-align: right;
+}
+
+.button_left {
+	flex: 7;
+	padding-top: 5px;
+	text-align: right;
+}
+
+.inputs, .form_errors, .input_insurance, .button {
+	flex: 1;
+}
+
+.inputs {
+	display: flex;
+}
+
+.inputs div {
+	flex: 1;
+	text-align: center;
+}
+
+.form_errors {
+	color: #B100DB;
+	text-align: center;
+}
+
+.details_right {
+	flex: 5;
+	padding-top: 30px;
+	display: flex;
+	flex-direction: column;
+	font-family: FiraCode;
+	color: $black;
+}
+
+.details_right div {
+	text-align: center;
+}
+
+.price_style {
+	color: #B100DB;
+}
+
+.input {
+	width: 190px;
+	padding: 15px;
+	border: 1px solid $black;
+	border-radius: 30px;
+	background-color: transparent;
+	font-family: FiraCode;
+	text-align: center;
+	outline: none;
+	transition: all .2s linear;
+
+	&:focus {
+		color: $white;
+		background-color: $black;
+	}
+
+	&:focus::-webkit-input-placeholder {
+		color: $white;
+	}
+
+	&:focus::-webkit-calendar-picker-indicator {
+    	filter: invert(1);
+	}
+}
+
+.input_insurance {
+	text-align: center;
+	display: flex;
+}
+
+.input_insurance_left {
+	flex: 3;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.input_insurance_right {
+	padding-left: 10px;
+	text-align: left;
+	flex: 5;
+	padding-top: 5px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+  &:before {
+  	position: absolute;
+  	content: "";
+  	height: 26px;
+  	width: 26px;
+  	left: 4px;
+  	bottom: 4px;
+  	background-color: white;
+  	-webkit-transition: .4s;
+  	transition: .4s;
+  }
+}
+
+input:checked + .slider {
+  background-color: #B100DB;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #B100DB;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider {
+  border-radius: 34px;
+
+  &:before {
+  	border-radius: 50%;
+  }
+}
+
+.live_price {
+	float: right;
+}
+
+.button_input {
+	font-family: FiraCode;
+	padding: 12px 35px 12px 35px;
+	background-color: $black;
+	color: $white;
+	border: none;
+	border-radius: 10px;
+	transition: all .2s linear;
+	outline: none;
+
+	&:hover {
+		background-color: #B100DB;
+	}
+}

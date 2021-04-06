@@ -24,6 +24,10 @@ const SignupMain = () => {
 		e.currentTarget.type = 'date';
 	};
 
+	const textType = e => {
+		e.currentTarget.type = 'text';
+	}
+
 	const initialFormData = Object.freeze({
 		email: '',
     	first_name: '',
@@ -114,7 +118,7 @@ const SignupMain = () => {
 							<input className={styles.signup_input} type='text' id='last_name' placeholder='last name' onChange={handleChange} />
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='text' onFocus={dateType} id='birth_day' placeholder='birth day' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' onFocus={dateType} onBlur={textType} id='birth_day' placeholder='birth day' onChange={handleChange} />
 						</div>
 					</div>
 					<div className={styles.signup_inputs}>

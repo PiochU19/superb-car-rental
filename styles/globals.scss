@@ -1,3 +1,6 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+
 html, body {
 	height: 100%;
 	width: 100%;
@@ -7,4 +10,18 @@ html, body {
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: column;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: $black;
+}
+
+::-webkit-scrollbar-thumb {
+	border: 0.2px solid #A9C2B2;
+	border-radius: 6px;
+	background-color: #A9C2B2;
 }
