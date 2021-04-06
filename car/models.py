@@ -18,6 +18,7 @@ class Car(models.Model):
 	fuel_type 			= models.CharField(max_length=20)
 	hourse_power 		= models.IntegerField()
 	main_image			= models.ImageField(upload_to='car_images/')
+	price_per_day		= models.IntegerField()
 
 	def __str__(self):
 		return f"{self.slug}"

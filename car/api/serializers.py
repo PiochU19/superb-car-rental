@@ -13,8 +13,7 @@ class CarListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Car
 		fields = ('slug', 'brand', 'model', 'generation',
-					'engine', 'year_of_production', 'body_type',
-					'fuel_type', 'hourse_power', 'main_image',)
+					'engine', 'fuel_type', 'hourse_power', 'main_image',)
 
 
 class CarImageSerializer(serializers.ModelSerializer):
