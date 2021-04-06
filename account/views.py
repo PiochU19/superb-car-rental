@@ -86,6 +86,6 @@ class EmailActivateView(View):
 				user.is_active = True
 				user.save()
 
-				return redirect("http://localhost:8080/")
+				return redirect("http://localhost:3000/login")
 			else:
 				return redirect('https://error404.com')

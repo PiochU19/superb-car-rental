@@ -17,16 +17,6 @@ class CarListSerializer(serializers.ModelSerializer):
 					'fuel_type', 'hourse_power', 'main_image',)
 
 
-class CarSlugListSerializer(serializers.ModelSerializer):
-	"""
-	Serializer for creating
-	dynamic pages in gatsbyJS
-	"""
-	class Meta:
-		model = Car
-		fields = ('slug',)
-
-
 class CarImageSerializer(serializers.ModelSerializer):
 	"""
 	Serializer for all related
