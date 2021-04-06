@@ -23,7 +23,7 @@ class CarDetailSerializer(serializers.ModelSerializer):
 	"""
 	class Meta:
 		model = Car
-		fields = ('brand', 'model', 'generation', 
+		fields = ('id', 'brand', 'model', 'generation', 
 					'engine', 'fuel_type', 'year_of_production', 
 					'body_type', 'hourse_power', 'main_image', 
 					'price_per_day',)

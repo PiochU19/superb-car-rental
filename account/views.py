@@ -5,6 +5,7 @@ from account.api.serializers import (
 	RegisterClientSerializer,
 	RegisterEmployeeSerializer,
 	UserPermissionsSerializer,
+	UserIdSerializer
 )
 from .models import User
 
@@ -57,6 +58,16 @@ class UserPermissionsView(APIView):
 		serializer = UserPermissionsSerializer(request.user)
 
 		return Response(serializer.data)
+
+
+class UserIdView(APIView):
+	"""
+	GET request returning user ID
+	"""
+	def get(self, request):
+		 serializer = UserIdSerializer(request.user)
+
+		 return Response(serializer.data)
 
 
 # Imports for email confirmation
