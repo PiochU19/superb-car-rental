@@ -14,6 +14,9 @@ urlpatterns = [
 # car URLs import
     path('api/car/', include('car.urls')),
 
+# rents URLs import
+    path('api/rent/', include('rents.urls')),
+
 # JSON Web Token Endpoints
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),

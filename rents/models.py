@@ -15,19 +15,12 @@ class Rent(models.Model):
 	rent_starts				= models.DateField()
 	rent_ends 				= models.DateField()
 	additional_insurance 	= models.BooleanField(default=False)
-	price 					= models.IntegerField(blank=True)
+	price 					= models.IntegerField()
 
 	def __str__(self):
 		return f"{self.slug}"
 
 	def save(self, *args, **kwargs):
-		self.price = (self.rent_ends - self.rent_starts).days * self.car.price_per_day
-
-		if self.additional_insurance:
-			self.price *= 1.10
-
-		super(Rent, self).save(*args, **kwargs)
-
 		self.slug = f"{self.car}-{self.id}"
 
 		super(Rent, self).save(*args, **kwargs)
