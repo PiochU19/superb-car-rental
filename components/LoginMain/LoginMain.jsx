@@ -97,10 +97,11 @@ const LoginMain = () => {
 						<input className={styles.login_input} type='password' id='password' placeholder='password' onChange={handleChange} />
 					</div>
 					<div className={styles.login_register}>
-						Create an account <Link href='/signup'>here</Link>
+						<p>Create an account <Link href='/signup'>here</Link></p>
+						<p>Forgot password? <Link href='/passwordreset'>here</Link></p>
 					</div>
 					<div>
-						<input className={styles.login_button} type='submit' value='Login' />
+						<input className={styles.login_button} type='submit' value='login' />
 					</div>
 				</form>
 			}

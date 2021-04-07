@@ -1,15 +1,15 @@
 import HeadComponent from '../../components/HeadComponent/HeadComponent';
 import Navbar from '../../components/Navbar/Navbar';
-import RentMain from '../../components/RentMain/RentMain';
+import PasswordMain from '../../components/PasswordMain/PasswordMain';
 import Footer from '../../components/Footer/Footer';
 
 
-export default function Rent() {
+export default function Home() {
   return (
     <>
-    	<HeadComponent>Superb Car Rental - Rent</HeadComponent>
+    	<HeadComponent>Superb Car Rental</HeadComponent>
     	<Navbar />
-    	<RentMain />
+    	<PasswordMain />
     	<Footer />
     </>
   )
