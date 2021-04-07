@@ -4,7 +4,7 @@ from .views import (
 	RegisterEmployeeView,
 	EmailActivateView,
 	UserPermissionsView,
-	UserIdView
+	UserIdView,
 )
 
 app_name = 'account'

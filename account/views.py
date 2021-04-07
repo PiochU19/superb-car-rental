@@ -63,11 +63,12 @@ class UserPermissionsView(APIView):
 class UserIdView(APIView):
 	"""
 	GET request returning user ID
+	of logged user
 	"""
 	def get(self, request):
-		 serializer = UserIdSerializer(request.user)
+		serializer = UserIdSerializer(request.user)
 
-		 return Response(serializer.data)
+		return Response(serializer.data)
 
 
 # Imports for email confirmation

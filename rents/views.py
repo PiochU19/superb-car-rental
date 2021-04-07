@@ -1,9 +1,17 @@
 from rest_framework import status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from .models import Rent
 from rents.api.serializers import (
 	MakeRentSerializer,
+)
+
+## Import functions for validations
+from rents.helpers import (
+	table_based_on_two_dates,
+	finding_collision,
+	create_table,
+	parse_date,
 )
 
 
@@ -13,11 +21,23 @@ class MakeRentView(APIView):
 	"""
 	permission_classes = [permissions.AllowAny]
 	def post(self, request):
-		serializer = MakeRentSerializer(data=request.data)
+		rents = Rent.objects.filter(car=request.data['car']).values_list('rent_starts', 'rent_ends')
+		rent_days = create_table(rents)
 
-		if serializer.is_valid():
-			serializer.save()
+		potential_rent_days = table_based_on_two_dates(
+			parse_date(request.data['rent_starts']),
+			parse_date(request.data['rent_ends'])
+		)
 
-			return Response("Rent made", status=status.HTTP_201_CREATED)
+		if finding_collision(rent_days, potential_rent_days):
 
-		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+			serializer = MakeRentSerializer(data=request.data)
+
+			if serializer.is_valid():
+				serializer.save()
+
+				return Response("Rent made", status=status.HTTP_201_CREATED)
+
+			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+		return Response("This car is booked on this date", status=status.HTTP_400_BAD_REQUEST)

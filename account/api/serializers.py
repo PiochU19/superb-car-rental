@@ -77,7 +77,7 @@ class UserPermissionsSerializer(serializers.HyperlinkedModelSerializer):
 	"""
 	class Meta:
 		model = User
-		fields = ('is_client', 'is_employee', 'is_superuser')
+		fields = ('is_client', 'is_employee', 'is_superuser',)
 
 
 class UserIdSerializer(serializers.HyperlinkedModelSerializer):
