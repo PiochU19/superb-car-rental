@@ -137,13 +137,13 @@ class PasswordChangeView(APIView):
 
 	def post(self, request):
 		try:
-			uid = force_text(urlsafe_base64_decode(data.request['uidb64']))
+			uid = force_text(urlsafe_base64_decode(request.data['uidb64']))
 			user = User.objects.get(pk=uid)
 		except (TypeError, ValueError, OverflowError, User.DoesNotExist):
 			user = None
 
-		if user is not None and token_password_reset_generator.check_token(user, data.request['token']):
-			user.set_passwor(request.data['password'])
+		if user is not None and token_password_reset_generator.check_token(user, request.data['token']):
+			user.set_password(request.data['password'])
 			user.save()
 
 			return Response('Password changed', status=status.HTTP_200_OK)
