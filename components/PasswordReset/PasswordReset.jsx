@@ -52,7 +52,7 @@ const PasswordReset = () => {
 				<input className={styles.passwordResetInput} type='email' id='email' placeholder='email' onChange={handleChange} />
 			</div>
 			<div className={styles.passwordResetButtonBlock}>
-				<input className={styles.passwordResetButton} type='submit' value='reset' />
+				<input className={styles.passwordResetButton} type='submit' value='request' />
 			</div>
 		</form>
 	)
