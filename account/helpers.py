@@ -1,9 +1,27 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage, EmailMultiAlternatives
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from .tokens import token_generator
+
+from django.core.mail import (
+	EmailMessage,
+	EmailMultiAlternatives
+)
+
+from django.utils.encoding import (
+	force_bytes,
+	force_text,
+	DjangoUnicodeDecodeError
+)
+
+from django.utils.http import (
+	urlsafe_base64_encode,
+	urlsafe_base64_decode
+)
+
+from .tokens import (
+	token_generator,
+	token_password_reset_generator,
+)
+
 from django.utils.html import strip_tags
 
 
@@ -25,4 +43,24 @@ def send_mail_confirmation(request, user, to_email):
 
 	email = EmailMultiAlternatives(mail_subject, text_content, 'car.superb.rental@gmail.com', [to_email])
 	email.attach_alternative(html_message, 'text/html')
+
+	email.send()
+
+
+def send_mail_password_reset(user):
+	"""
+	function sending email
+	after password reset request
+	"""
+	mail_subject = 'Password reset'
+
+	html_message = render_to_string('email-password-template.html', {
+		'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+		'token': token_password_reset_generator.make_token(user),
+	})
+	text_content = strip_tags(html_message)
+
+	email = EmailMultiAlternatives(mail_subject, text_content, 'car.superb.rental@gmail.com', [user.email])
+	email.attach_alternative(html_message, 'text/html')
+
 	email.send()
