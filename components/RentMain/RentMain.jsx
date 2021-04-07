@@ -136,7 +136,9 @@ const RentMain = () => {
 						Router.push('/');
 					})
 					.catch(error => {
-						console.log(error.response);
+						if (error.response.data) {
+							setErr(error.response.data);
+						}
 					});
 			});
 		} else {
