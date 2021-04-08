@@ -1,5 +1,6 @@
 import HeadComponent from '../components/HeadComponent/HeadComponent';
 import Navbar from '../components/Navbar/Navbar';
+import ProfileMain from '../components/ProfileMain/ProfileMain';
 import Footer from '../components/Footer/Footer';
 
 
@@ -8,6 +9,7 @@ export default function Home() {
     <>
     	<HeadComponent>Superb Car Rental - Profile</HeadComponent>
     	<Navbar />
+    	<ProfileMain />
     	<Footer />
     </>
   )

@@ -71,7 +71,9 @@ const PasswordMain = () => {
 						Router.push({ pathname: '/login', query: { message: res.data } }, '/login')
 					})
 					.catch(error => {
-						console.log(error);
+						if (error.response.data) {
+							setErrMsg(error.response.data);
+						}
 					});
 			});
 		} else {
@@ -90,7 +92,7 @@ const PasswordMain = () => {
 					{ errMsg ? <h2>{errMsg}</h2> : <h2>Fill the form below</h2> }
 				</div>
 				<div className={styles.passwordMainInputBlock}>
-					<input className={styles.passwordMainInput} type='password' id='password' placeholder='password' onChange={handleChange} />
+					<input className={styles.passwordMainInput} type='password' id='password' placeholder='new password' onChange={handleChange} />
 				</div>
 				<div className={styles.passwordMainInputBlock}>
 					<input className={styles.passwordMainInput} type='password' id='password_conf' placeholder='password confirmation' onChange={handleChange} />

@@ -33,24 +33,7 @@ const Navbar = () => {
 						}
 					})
 					.catch(error => {
-						if (error.response.status === 401) {
-							axiosInstance
-								.post('/token/refresh/', {
-									refresh: localStorage.getItem('refresh'),
-								})
-								.then(response => {
-									setAuth(true);
-									localStorage.setItem('access_token', response.data.access);
-									localStorage.setItem('refresh_token', response.data.refresh);
-								})
-								.catch(error => {
-									localStorage.removeItem('access_token');
-									localStorage.removeItem('refresh_token');
-									axiosInstance.defaults.headers['Authorization'] = null;
-									
-									setAuth(false);
-								});
-						};
+						setAuth(false);
 					});
 			});
 		}, []);

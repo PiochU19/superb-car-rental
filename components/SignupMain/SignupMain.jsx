@@ -79,8 +79,13 @@ const SignupMain = () => {
 					})
 					.catch((error) => {
 						if (error.response) {
-							e.target.reset();
-							setErrMsg("Fill the form correctly");
+							if (error.response.data.email) {
+								setErrMsg("User with this email already exists");
+							} else if (error.response.data.client) {
+								setErrMsg('User with this driver license already exists');
+							} else {
+								setErrMsg(error.response.data);
+							}
 						} else {
 							e.target.reset();
 							setErrMsg('Something is wrong with our servers');

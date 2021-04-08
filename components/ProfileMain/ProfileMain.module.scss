@@ -1,0 +1,44 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+
+@font-face {
+	font-family: FiraCode;
+	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
+}
+
+.profileMain {
+	display: flex;
+	flex-direction: row;
+}
+
+.profileMain div {
+	font-family: FiraCode;
+}
+
+.profileMainLeft {
+	padding-top: 60px;
+	flex: 4;
+}
+
+.profileMainLeftTitle {
+	text-align: center;
+}
+
+.profileMainLeftMain {
+	display: flex;
+}
+
+.profileMainLeftMainLeft {
+	flex: 18;
+	text-align: right;
+	padding-right: 30px;
+	padding-bottom: 8px;
+}
+
+.profileMainLeftMainRight {
+	flex: 19;
+}
+
+.profileMainRight {
+	flex: 5;
+}

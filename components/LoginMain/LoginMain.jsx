@@ -13,7 +13,7 @@ const LoginMain = () => {
 	const [mailMsg, setMailMsg] = useState("");
 
 	useEffect(() => {
-		if (localStorage.getItem('refresh_token')){
+		if (localStorage.getItem('access_token')){
 			Router.push('/');
 		} else {
 			setLoading(false);
