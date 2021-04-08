@@ -11,7 +11,7 @@ class Rent(models.Model):
 	"""
 	slug 					= models.SlugField(unique=True, blank=True)
 	user 					= models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_rent')
-	car 					= models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car_rent')
+	car 					= models.ForeignKey(Car, on_delete=models.CASCADE, related_name='related_car')
 	rent_starts				= models.DateField()
 	rent_ends 				= models.DateField()
 	additional_insurance 	= models.BooleanField(default=False)

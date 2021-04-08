@@ -64,3 +64,13 @@ def send_mail_password_reset(user):
 	email.attach_alternative(html_message, 'text/html')
 
 	email.send()
+
+
+# import re
+import re
+
+
+def password_check(string):
+	if re.match("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", string):
+		return True
+	return False

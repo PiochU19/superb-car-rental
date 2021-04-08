@@ -2,12 +2,10 @@ from rest_framework import serializers
 from account.models import (
 	User,
 )
-from car.models import (
-	Car,
-)
 from rents.models import (
 	Rent,
 )
+from car.api.serializers import CarDetailSerializer
 
 
 class MakeRentSerializer(serializers.ModelSerializer):
@@ -28,3 +26,22 @@ class MakeRentSerializer(serializers.ModelSerializer):
 		rent.save()
 
 		return rent
+
+
+class RentSerializer(serializers.ModelSerializer):
+	"""
+	Rent Serializer
+	"""
+	class Meta:
+		model = Rent
+		fields = ('car', 'rent_starts', 'rent_ends',
+					'additional_insurance', 'price')
+
+	def to_representation(self, instance):
+		"""
+		displaying all car data
+		instead of id
+		"""
+		rep = super().to_representation(instance)
+		rep['car'] = CarDetailSerializer(instance.car).data
+		return rep

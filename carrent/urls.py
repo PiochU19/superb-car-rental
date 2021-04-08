@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 # account URLs import
-    path('', include('account.urls')),
+    path('api/', include('account.urls')),
 
 # car URLs import
     path('api/car/', include('car.urls')),

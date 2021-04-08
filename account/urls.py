@@ -4,6 +4,7 @@ from .views import (
 	RegisterEmployeeView,
 	UserPermissionsView,
 	UserIdView,
+	ClientDetailView,
 
 	EmailActivateView,
 	PasswordChangeView,
@@ -13,12 +14,13 @@ from .views import (
 app_name = 'account'
 
 urlpatterns = [
-	path('api/user/client/register/', RegisterClientView.as_view(), name='register-client'),
-	path('api/user/employee/register/', RegisterEmployeeView.as_view(), name='register-employee'),
-	path('api/user/permissions/', UserPermissionsView.as_view(), name='user-permissions'),
-	path('api/user/id/', UserIdView.as_view(), name='user-id'),
+	path('user/client/register/', RegisterClientView.as_view(), name='register-client'),
+	path('user/employee/register/', RegisterEmployeeView.as_view(), name='register-employee'),
+	path('user/permissions/', UserPermissionsView.as_view(), name='user-permissions'),
+	path('user/id/', UserIdView.as_view(), name='user-id'),
+	path('user/client/', ClientDetailView.as_view(), name='client-detail'),
 
 	path('activate/<uidb64>/<token>', EmailActivateView.as_view(), name='email-activate'),
-	path('api/passwordchange/', PasswordChangeView.as_view(), name='password-change'),
-	path('api/passwordchange/request/', PasswordChangeRequestView.as_view(), name='password-change-request'),
+	path('passwordchange/', PasswordChangeView.as_view(), name='password-change'),
+	path('passwordchange/request/', PasswordChangeRequestView.as_view(), name='password-change-request'),
 ]

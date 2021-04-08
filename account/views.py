@@ -5,10 +5,14 @@ from account.api.serializers import (
 	RegisterClientSerializer,
 	RegisterEmployeeSerializer,
 	UserPermissionsSerializer,
-	UserIdSerializer
+	UserIdSerializer,
+	ClientProfileSerializer,
 )
 from .models import User
-from account.helpers import send_mail_password_reset
+from account.helpers import (
+	send_mail_password_reset,
+	password_check,
+)
 from .tokens import (
 	token_generator,
 	token_password_reset_generator,
@@ -27,12 +31,15 @@ class RegisterClientView(APIView):
 		serializer = RegisterClientSerializer(data=data)
 
 		if serializer.is_valid():
-			serializer.save()
+			if password_check(data['password']):
+				serializer.save()
 
-			user = User.objects.get(email=data['email'])
-			send_mail_confirmation(request, user, data['email'])
+				user = User.objects.get(email=data['email'])
+				send_mail_confirmation(request, user, data['email'])
 
-			return Response("We've sent you email", status=status.HTTP_201_CREATED)
+				return Response("We've sent you email", status=status.HTTP_201_CREATED)
+
+			return Response('Your password is too weak', status=status.HTTP_400_BAD_REQUEST)
 
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -96,6 +103,16 @@ class PasswordChangeRequestView(APIView):
 		return Response('Invalid email', status=status.HTTP_400_BAD_REQUEST)
 
 
+class ClientDetailView(APIView):
+	"""
+	GET request returning all
+	detail about logged client
+	"""
+	def get(self, request):
+		serializer = ClientProfileSerializer(request.user, context={'request': request})
+
+		return Response(serializer.data)
+
 
 # Imports for email confirmation
 from django.views import View
@@ -143,9 +160,12 @@ class PasswordChangeView(APIView):
 			user = None
 
 		if user is not None and token_password_reset_generator.check_token(user, request.data['token']):
-			user.set_password(request.data['password'])
-			user.save()
+			if password_check(request.data['password']):
+				user.set_password(request.data['password'])
+				user.save()
 
-			return Response('Password changed', status=status.HTTP_200_OK)
+				return Response('Password changed', status=status.HTTP_200_OK)
+
+			return Response('Your password is too weak', status=status.HTTP_400_BAD_REQUEST)
 
 		return Response('Something went wrong', status=status.HTTP_400_BAD_REQUEST)

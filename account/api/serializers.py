@@ -3,6 +3,7 @@ from account.models import (
 	User,
 	Client,
 )
+from rents.api.serializers import RentSerializer
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -87,3 +88,17 @@ class UserIdSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = User
 		fields = ('id',)
+
+
+class ClientProfileSerializer(serializers.ModelSerializer):
+	"""
+	Returning data needed 
+	for profile page
+	"""
+	client = ClientSerializer(many=False)
+	user_rent = RentSerializer(many=True)
+
+	class Meta:
+		model = User
+		fields = ('first_name', 'last_name',
+					'email', 'client', 'user_rent',)

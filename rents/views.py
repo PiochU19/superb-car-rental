@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from .models import Rent
 from rents.api.serializers import (
 	MakeRentSerializer,
+	RentSerializer
 )
 
 ## Import functions for validations
@@ -41,3 +42,13 @@ class MakeRentView(APIView):
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 		return Response("This car is booked on this date", status=status.HTTP_400_BAD_REQUEST)
+
+
+class RentView(APIView):
+	permission_classes = [permissions.AllowAny]
+	def get(self, request):
+		queryset = Rent.objects.filter(user=3)
+
+		serializer = RentSerializer(queryset, many=True)
+
+		return Response(serializer.data)
