@@ -44,11 +44,20 @@ class MakeRentView(APIView):
 		return Response("This car is booked on this date", status=status.HTTP_400_BAD_REQUEST)
 
 
-class RentView(APIView):
-	permission_classes = [permissions.AllowAny]
-	def get(self, request):
-		queryset = Rent.objects.filter(user=3)
+class RentDeleteView(APIView):
+	"""
+	View deleting rent by ID
+	"""
+	def get_object(self, id):
+		return Rent.objects.get(pk=id)
 
-		serializer = RentSerializer(queryset, many=True)
+	def delete(self, request, id):
+		rent = self.get_object(id)
+		user = request.user
 
-		return Response(serializer.data)
+		if rent.user == user:
+			rent.delete()
+
+			return Response(status=status.HTTP_204_NO_CONTENT)
+
+		return Response(status=status.HTTP_400_BAD_REQUEST)

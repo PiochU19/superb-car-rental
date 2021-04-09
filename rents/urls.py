@@ -2,12 +2,12 @@ from django.urls import path
 
 from .views import (
 	MakeRentView,
-	RentView
+	RentDeleteView,
 )
 
 app_name = 'rents'
 
 urlpatterns = [
 	path('make/', MakeRentView.as_view(), name='make-rent'),
-	path('rent/', RentView.as_view(), name='asdsad'),
+	path('delete/<int:id>/', RentDeleteView.as_view(), name='make-delete'),
 ]

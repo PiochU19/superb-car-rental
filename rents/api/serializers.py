@@ -34,7 +34,7 @@ class RentSerializer(serializers.ModelSerializer):
 	"""
 	class Meta:
 		model = Rent
-		fields = ('car', 'rent_starts', 'rent_ends',
+		fields = ('id', 'car', 'rent_starts', 'rent_ends',
 					'additional_insurance', 'price')
 
 	def to_representation(self, instance):
