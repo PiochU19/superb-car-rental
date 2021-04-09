@@ -34,6 +34,7 @@ const Navbar = () => {
 					})
 					.catch(error => {
 						setAuth(false);
+						localStorage.removeItem('access_token');
 					});
 			});
 		}, []);

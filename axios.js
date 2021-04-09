@@ -35,7 +35,6 @@ axiosInstance.interceptors.response.use(
 			error.response.status === 401 &&
 			originalRequest.url === baseURL + 'token/refresh/'
 		) {
-			window.location.href = '/login/';
 			return Promise.reject(error);
 		}
 
@@ -66,11 +65,7 @@ axiosInstance.interceptors.response.use(
 
 							return axiosInstance(originalRequest);
 						})
-				} else {
-					window.location.href = '/login/';
 				}
-			} else {
-				window.location.href = '/login/';
 			}
 		}
 

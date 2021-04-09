@@ -5,30 +5,58 @@ import Router from 'next/router';
 
 import styles from './ProfileMain.module.scss';
 
+import DeleteSVG from '../../assets/svgs/bin.svg';
+
 const isClient = () => typeof window !== "undefined";
 
 
 const ProfileMain = () => {
 
 	const [client, setClient] = useState('');
-	const [rents, setRents] = useState('');
+	const [rents, setRents] = useState([]);
 
 	if (isClient) {
 		useEffect(() => {
-			import('../../axios.js').then(axios => {
-				const axiosInstance = axios.default;
-				
-				axiosInstance
-					.get('user/client/')
-					.then(res => {
-						console.log(res.data);
-						setClient(res.data);
-					})
-					.catch(error => {
-						console.log(error.response);
-					});
-			});
+			load_rents();
 		}, []);
+	};
+
+	const load_rents = () => {
+		import('../../axios.js').then(axios => {
+			const axiosInstance = axios.default;
+			
+			axiosInstance
+				.get('user/client/')
+				.then(res => {
+					if (res.data.client) {
+						setClient(res.data);
+						setRents(res.data.user_rent);
+					} else {
+						Router.push('/');
+					}
+				})
+				.catch(error => {
+					Router.push('/');
+				});
+		});
+	};
+
+	const handleDelete = e => {
+		const id = e.target.id;
+
+		import('../../axios.js').then(axios => {
+			const axiosInstance = axios.default;
+
+			axiosInstance
+				.delete(`rent/delete/${id}`)
+				.then(res => {
+					load_rents();
+				})
+		});
+	};
+
+	const valid_date = () => {
+
 	};
 
 	return (
@@ -105,9 +133,37 @@ const ProfileMain = () => {
 							</div>
 						</div>
 					</div>
+					{ rents.length !== 0
+					?
 					<div className={styles.profileMainRight}>
-						lewo
+						<div className={styles.profileMainRightTitle}>
+							<h1>Your rents</h1>
+						</div>
+						<div className={styles.profileMainRightRents}>
+							{rents.map(rent => (
+								<div className={styles.profileMainRightRent} key={rent.id}>
+									<div>
+										<img className={styles.profileMainRightRentImage} src={`http://localhost:8000${rent.car.main_image}`} alt='Samochut' />
+									</div>
+									<div>
+										{rent.car.brand} {rent.car.model} {rent.car.generation}
+									</div>
+									<div>
+										from {rent.rent_starts} to {rent.rent_ends}
+									</div>
+									<div>
+										{rent.price} PLN
+									</div>
+									<div>
+										<DeleteSVG onClick={handleDelete} id={rent.id}/>
+									</div>
+								</div>
+							))}
+						</div>
 					</div>
+					:
+					<></>
+					}
 				</div>
 				:
 				<></>

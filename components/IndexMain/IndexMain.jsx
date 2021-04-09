@@ -5,6 +5,7 @@ import Router from 'next/router';
 
 import styles from './IndexMain.module.scss';
 
+import axios from 'axios';
 const isClient = () => typeof window !== "undefined";
 
 const IndexMain = () => {
@@ -14,16 +15,12 @@ const IndexMain = () => {
 
 	if (isClient) {
 		useEffect(() => {
-			import('../../axios.js').then(axios => {
-				const axiosInstance = axios.default;
-
-				axiosInstance
-					.get('car/')
-					.then((res) => {
-						setCars(res.data);
-						setNotLoading(true);
-					});
-			});
+			axios
+				.get('http://localhost:8000/api/car/')
+				.then((res) => {
+					setCars(res.data);
+					setNotLoading(true);
+				})
 		}, []);
 	}
 

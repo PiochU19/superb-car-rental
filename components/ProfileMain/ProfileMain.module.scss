@@ -9,6 +9,7 @@ $black: #0D0D0D;
 .profileMain {
 	display: flex;
 	flex-direction: row;
+	padding-bottom: 60px;
 }
 
 .profileMain div {
@@ -41,4 +42,31 @@ $black: #0D0D0D;
 
 .profileMainRight {
 	flex: 5;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding-top: 60px;
+}
+
+.profileMainRightRent {
+	display: flex;
+	align-items: center;
+}
+
+.profileMainRightRentImage {
+	height: 60px;
+	width: 106.5px;
+	border-radius: 10px;
+}
+
+.profileMainRightRent div {
+	flex: 1;
+}
+
+.profileMainRightRent div:nth-child(2) {
+	flex: 2;
+}
+
+.profileMainRightRent div:nth-child(3) {
+	flex: 3;
 }
