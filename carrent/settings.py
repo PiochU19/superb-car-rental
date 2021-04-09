@@ -60,6 +60,9 @@ INSTALLED_APPS = [
 
 # Handling rents
     'rents',
+
+# Handling issues sending by clients
+    'issues',
 ]
 
 # CORS SETTINGS
