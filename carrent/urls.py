@@ -17,6 +17,9 @@ urlpatterns = [
 # rents URLs import
     path('api/rent/', include('rents.urls')),
 
+# issues URLs import
+    path('api/issue/', include('issues.urls')),
+
 # JSON Web Token Endpoints
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
