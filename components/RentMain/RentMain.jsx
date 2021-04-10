@@ -133,7 +133,7 @@ const RentMain = () => {
 						user: user_id,
 					})
 					.then(res =>{
-						Router.push('/');
+						Router.push('/profile');
 					})
 					.catch(error => {
 						if (error.response.data) {
