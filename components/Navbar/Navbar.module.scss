@@ -59,6 +59,18 @@
 	margin-right: 25px;
 }
 
+.header_middle_svg, .header_right_svg {
+	margin-right: 25px;
+}
+
 .header_svg {
 	display: flex;
+}
+
+.svg {
+	transition: all .2s linear;
+
+	&:hover {
+		stroke: #A6A6A6;
+	}
 }

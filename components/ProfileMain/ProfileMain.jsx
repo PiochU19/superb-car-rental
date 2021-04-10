@@ -55,8 +55,18 @@ const ProfileMain = () => {
 		});
 	};
 
-	const valid_date = () => {
+	const parse_date = (date) => {
+		return new Date(date);
+	};
 
+	const valid_date = (date) => {
+		const d1 = parse_date(date);
+		const today = new Date();
+		if (d1 > today) {
+			return true
+		} else {
+			return false
+		}
 	};
 
 	return (
@@ -155,7 +165,12 @@ const ProfileMain = () => {
 										{rent.price} PLN
 									</div>
 									<div>
-										<DeleteSVG onClick={handleDelete} id={rent.id}/>
+										{ valid_date(rent.rent_starts)
+											?
+											<DeleteSVG onClick={handleDelete} id={rent.id}/>
+											:
+											<></>
+										}
 									</div>
 								</div>
 							))}

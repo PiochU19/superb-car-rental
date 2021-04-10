@@ -8,6 +8,7 @@ import LoginSVG from '../../assets/svgs/login.svg';
 import UserSVG from '../../assets/svgs/user.svg';
 import LogoutSVG from '../../assets/svgs/logout.svg';
 import SettingsSVG from '../../assets/svgs/settings.svg';
+import DatabaseSVG from '../../assets/svgs/database.svg';
 
 const isClient = () => typeof window !== "undefined";
 
@@ -28,8 +29,10 @@ const Navbar = () => {
 						setAuth(true);
 						if (res.data.is_client) {
 							setUserType("client");
+						} else if (res.data.is_superuser) {
+							setUserType("admin");
 						} else if (res.data.is_employee) {
-							setUserType("employee");
+							setUserType('employee');
 						}
 					})
 					.catch(error => {
@@ -47,7 +50,7 @@ const Navbar = () => {
 			</div>
 			<div className={styles.header_navigation}>
 				<div className={styles.header_navigation_about}><Link href='/about'>About</Link></div>
-				<div className={styles.header_navigation_contact}><Link href='/contact'>Contact Us</Link></div>
+				<div className={styles.header_navigation_contact}><Link href='/contact'>Contact</Link></div>
 				<div className={styles.header_navigation_login}>
 					{(() => {
 						if (auth) {
@@ -62,21 +65,30 @@ const Navbar = () => {
 										</div>
 									</div>
 								)
-							} else if (userType === 'employee') {
+							} else if (userType === 'employee' || userType === 'admin') {
 								return (
 									<div className={styles.header_svg}>
 										<div className={styles.header_left_svg}>
-											<Link href='/panel'><SettingsSVG /></Link>
+											<Link href='/panel'><SettingsSVG className={styles.svg}/></Link>
 										</div>
-										<div>
-											<Link href='/logout'><LogoutSVG /></Link>
+										{(() => {
+											if (userType === 'admin') {
+												return (
+													<div className={styles.header_middle_svg}>
+														<Link href='http://localhost:8000/admin/' target='_blank'><DatabaseSVG className={styles.svg}/></Link>
+													</div>
+												)
+											}
+										})()}
+										<div className={styles.header_right_svg}>
+											<Link href='/logout'><LogoutSVG className={styles.svg}/></Link>
 										</div>
 									</div>
 								)
 							}
 						} else {
 							return (
-								<Link href='/login'><LoginSVG /></Link>
+								<Link href='/login'><LoginSVG className={styles.svg}/></Link>
 							)
 						}
 					})()}
