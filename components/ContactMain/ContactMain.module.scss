@@ -1,0 +1,99 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+$purple: #B100DB;
+
+@font-face {
+	font-family: FiraCode;
+	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
+}
+
+.ContactMain {
+	display: flex;
+	flex-direction: column;
+	padding-top: 60px;
+}
+
+.ContactMain div {
+	text-align: center;
+	font-family: FiraCode;
+	color: $black;
+}
+
+.ContactMainInputUp {
+	display: flex;
+}
+
+.ContactMainInputUp div {
+	flex: 1;
+	margin-bottom: 30px;
+
+	&:nth-child(1) {
+		text-align: right;
+		margin-right: 35px;
+	}
+
+	&:nth-child(2) {
+		text-align: left;
+		margin-left: 35px;
+	}
+}
+
+.InputUp {
+	padding: 15px;
+	border: 1px solid $black;
+	border-radius: 30px;
+	background-color: transparent;
+	font-family: FiraCode;
+	text-align: center;
+	outline: none;
+	transition: all .2s linear;
+
+	&:focus {
+		color: $white;
+		background-color: $black;
+	}
+	&:focus::-webkit-input-placeholder {
+		color: $white;
+	}
+}
+
+.InputDown {
+	border: 1px solid $black;
+	border-radius: 30px;
+	background-color: transparent;
+	font-family: FiraCode;
+	outline: none;
+	transition: all .2s linear;
+	width: 550px;
+	height: 150px;
+	padding: 25px;
+
+	&:focus {
+		color: $white;
+		background-color: $black;
+	}
+
+	&:focus::-webkit-input-placeholder {
+		color: $white;
+	}
+}
+
+.ContactMainTitle h1{
+	color: $purple;
+}
+
+.SubmitButton {
+	margin-top: 10px;
+	font-family: FiraCode;
+	padding: 12px 35px 12px 35px;
+	background-color: $black;
+	color: $white;
+	border: none;
+	border-radius: 10px;
+	transition: all .2s linear;
+	outline: none;
+
+	&:hover {
+		background-color: #B100DB;
+	}
+}
