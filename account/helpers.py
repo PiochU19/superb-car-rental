@@ -41,7 +41,12 @@ def send_mail_confirmation(request, user, to_email):
 	})
 	text_content = strip_tags(html_message)
 
-	email = EmailMultiAlternatives(mail_subject, text_content, 'car.superb.rental@gmail.com', [to_email])
+	email = EmailMultiAlternatives(
+		mail_subject,
+		text_content,
+		'car.superb.rental@gmail.com',
+		[to_email]
+	)
 	email.attach_alternative(html_message, 'text/html')
 
 	email.send()
@@ -60,7 +65,11 @@ def send_mail_password_reset(user):
 	})
 	text_content = strip_tags(html_message)
 
-	email = EmailMultiAlternatives(mail_subject, text_content, 'car.superb.rental@gmail.com', [user.email])
+	email = EmailMultiAlternatives(mail_subject,
+		text_content,
+		'car.superb.rental@gmail.com',
+		[user.email]
+	)
 	email.attach_alternative(html_message, 'text/html')
 
 	email.send()

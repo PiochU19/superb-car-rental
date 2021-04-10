@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from issues.api.serializers import (
 	IssueSerializer,
 )
+from .models import Issue
+from .helpers import send_email_issue_confirmation
 
 
 class IssueView(APIView):
@@ -16,8 +18,10 @@ class IssueView(APIView):
 		serializer = IssueSerializer(data=request.data)
 
 		if serializer.is_valid():
-			serializer.save()
+			issue = serializer.save()
 
-			return Response('Issue made', status=status.HTTP_201_CREATED)
+			send_email_issue_confirmation(request, issue.id, issue.email)
+
+			return Response('Issue has been sent', status=status.HTTP_201_CREATED)
 
 		return Response('Something went wrong', status=status.HTTP_400_BAD_REQUEST)
