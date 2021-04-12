@@ -1,0 +1,85 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+$purple: #B100DB;
+
+@font-face {
+	font-family: FiraCode;
+	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
+}
+
+.ProfileEdit {
+	display: flex;
+	flex-direction: column;
+	padding-top: 60px;
+}
+
+.ProfileEditTitle {
+	text-align: center;
+	color: $purple;
+	font-family: FiraCode;
+}
+
+.ProfileEditInputs {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.ProfileEditInputs div {
+	flex: 1;
+
+	&:nth-child(1) {
+		text-align: right;
+		margin-right: 40px;
+	}
+
+	&:nth-child(2) {
+		text-align: left;
+	}
+}
+
+.ProfileEditInput {
+	width: 190px;
+	height: 20px;
+
+	&:focus::-webkit-calendar-picker-indicator {
+    	filter: invert(1);
+	}
+}
+
+.ProfileEditInput {
+	padding: 15px;
+	border: 1px solid $black;
+	border-radius: 30px;
+	background-color: transparent;
+	font-family: FiraCode;
+	text-align: center;
+	outline: none;
+	transition: all .2s linear;
+
+	&:focus {
+		color: $white;
+		background-color: $black;
+	}
+	&:focus::-webkit-input-placeholder {
+		color: $white;
+	}
+}
+
+.EditButtonDiv {
+	text-align: center;
+}
+
+.EditButton {
+	font-family: FiraCode;
+	padding: 12px 35px 12px 35px;
+	background-color: $black;
+	color: $white;
+	border: none;
+	border-radius: 10px;
+	transition: all .2s linear;
+	outline: none;
+
+	&:hover {
+		background-color: #B100DB;
+	}
+}

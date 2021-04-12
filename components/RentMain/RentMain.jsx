@@ -30,15 +30,26 @@ const RentMain = () => {
 					.get(`car/${slug}`)
 					.then((res) => {
 						setCar(res.data);
-						setLoading(false);
 					})
-					.catch((error) => {
+					.catch(error => {
 						Router.push('/');
 					});
 				axiosInstance
 					.get('user/id')
 					.then(res => {
 						setUserId(res.data.id);
+					})
+					.catch(error => {
+						Router.push('/');
+					});					
+				axiosInstance
+					.get('user/permissions')
+					.then(res => {
+						if (!res.data.is_client) {
+							Router.push('/');
+						} else {
+							setLoading(false);
+						}
 					})
 					.catch(error => {
 						Router.push('/');

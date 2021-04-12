@@ -58,10 +58,10 @@ const Navbar = () => {
 								return (
 									<div className={styles.header_svg}>
 										<div className={styles.header_left_svg}> 
-											<Link href='/profile'><UserSVG /></Link>
+											<Link href='/profile'><UserSVG className={styles.svg}/></Link>
 										</div>
 										<div>
-											<Link href='/logout'><LogoutSVG /></Link>
+											<Link href='/logout'><LogoutSVG className={styles.svg}/></Link>
 										</div>
 									</div>
 								)

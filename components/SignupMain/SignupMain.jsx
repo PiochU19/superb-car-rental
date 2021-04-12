@@ -163,7 +163,7 @@ const SignupMain = () => {
 						Already have an accout? <Link href ='/login'>Login here</Link>
 					</div>
 					<div className={styles.signup_button_div}>
-						<input className={styles.signup_button} type='submit' value='Signup' />
+						<input className={styles.signup_button} type='submit' value='signup' />
 					</div>
 				</form>
 			}

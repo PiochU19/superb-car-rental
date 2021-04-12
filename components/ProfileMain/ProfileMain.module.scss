@@ -1,5 +1,6 @@
 $white: #F2F2F2;
 $black: #0D0D0D;
+$purple: #B100DB;
 
 @font-face {
 	font-family: FiraCode;
@@ -69,4 +70,14 @@ $black: #0D0D0D;
 
 .profileMainRightRent div:nth-child(3) {
 	flex: 3;
+}
+
+.profileEdit {
+	padding-top: 55px;
+	text-align: center;
+}
+
+.profileEdit a {
+	color: $purple;
+	text-decoration: none;
 }

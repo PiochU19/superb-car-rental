@@ -28,7 +28,7 @@ const ProfileMain = () => {
 			axiosInstance
 				.get('user/client/')
 				.then(res => {
-					if (res.data.client) {
+					if (res.data.is_client) {
 						setClient(res.data);
 						setRents(res.data.user_rent);
 					} else {
@@ -141,6 +141,9 @@ const ProfileMain = () => {
 							<div className={styles.profileMainLeftMainRight}>
 								{client.client.postal_code}
 							</div>
+						</div>
+						<div className={styles.profileEdit}>
+							<Link href='profile/edit/'>Edit your profile</Link>
 						</div>
 					</div>
 					{ rents.length !== 0
