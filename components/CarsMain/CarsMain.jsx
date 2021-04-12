@@ -6,6 +6,7 @@ import Router from 'next/router';
 import styles from './CarsMain.module.scss';
 
 import BinSVG from '../../assets/svgs/bin.svg';
+import EditSVG from '../../assets/svgs/edit.svg';
 
 const isClient = () => typeof window !== "undefined";
 
@@ -17,6 +18,21 @@ const CarsMain = () => {
 
 	if (isClient) {
 		useEffect(() => {
+			import('../../axios').then(axios => {
+				const axiosInstance = axios.default;
+
+				axiosInstance
+					.get('user/client/')
+					.then(res => {
+						if (res.data.is_client) {
+							Router.push('/');
+						}
+					})
+					.catch(error => {
+						Router.push('/');
+					})
+			});
+
 			loadCars();
 		},[]);
 	};
@@ -62,7 +78,7 @@ const CarsMain = () => {
 						<h1>Manage cars</h1>
 					</div>
 					<div className={styles.AddCar}>
-						<Link href='panel/cars/add'><input className={styles.Button} type='submit' value='add car' /></Link>
+						<Link href='/panel/cars/add'><input className={styles.Button} type='submit' value='add car' /></Link>
 					</div>
 					<div className={styles.Cars}>
 						{cars.map(car => (
@@ -84,7 +100,7 @@ const CarsMain = () => {
 										<p>{car.price_per_day} PLN</p>
 									</div>
 									<div>
-										<p>edit</p>
+										<Link href={`/panel/cars/${car.slug}`}><p><EditSVG className={styles.SVG}/></p></Link>
 									</div>
 									<div>
 										<p><BinSVG className={styles.SVG} id={car.id} onClick={handleDelete}/></p>

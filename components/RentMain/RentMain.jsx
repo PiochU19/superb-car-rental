@@ -27,7 +27,7 @@ const RentMain = () => {
 				const axiosInstance = axios.default;
 
 				axiosInstance
-					.get(`car/${slug}`)
+					.get(`car/get/${slug}`)
 					.then((res) => {
 						setCar(res.data);
 					})
