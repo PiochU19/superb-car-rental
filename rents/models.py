@@ -17,6 +17,9 @@ class Rent(models.Model):
 	additional_insurance 	= models.BooleanField(default=False)
 	price 					= models.IntegerField()
 
+	class Meta:
+		ordering = ('-rent_starts',)
+
 	def __str__(self):
 		return f"{self.slug}"
 

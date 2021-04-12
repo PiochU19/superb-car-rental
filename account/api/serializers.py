@@ -100,5 +100,16 @@ class ClientProfileSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = User
-		fields = ('first_name', 'last_name',
-					'email', 'client', 'user_rent',)
+		fields = ('first_name', 'last_name', 'email',
+					'client', 'user_rent','is_superuser',
+					'is_employee', 'is_client')
+
+
+class ClientUpdateSerializer(serializers.ModelSerializer):
+	"""
+	Updating client data
+	"""
+	class Meta:
+		model = Client
+		fields = ('user', 'phone_number', 'birth_day', 'city',
+					'street', 'street_number', 'postal_code',)

@@ -7,8 +7,9 @@ from account.api.serializers import (
 	UserPermissionsSerializer,
 	UserIdSerializer,
 	ClientProfileSerializer,
+	ClientUpdateSerializer,
 )
-from .models import User
+from .models import User, Client
 from account.helpers import (
 	send_mail_password_reset,
 	password_check,
@@ -114,10 +115,43 @@ class ClientDetailView(APIView):
 		return Response(serializer.data)
 
 
+class ClientUpdateView(APIView):
+	"""
+	View updating some
+	client data
+	"""
+	def put(self, request):
+		"""
+		PUT request for update
+		"""
+		data = request.data
+
+		client = Client.objects.get(user=data['user'])
+
+		serializer = ClientUpdateSerializer(client, data)
+
+		if serializer.is_valid():
+			serializer.save()
+
+			return Response(status=status.HTTP_200_OK)
+
+		return Response('Something went wrong', status=status.HTTP_400_BAD_REQUEST)
+
+	def get(self, request):
+		"""
+		GET request for get
+		user logged in data
+		"""
+		client = Client.objects.get(user=request.user)
+
+		serializer = ClientUpdateSerializer(client)
+
+		return Response(serializer.data)
+
+
 # Imports for email confirmation
 from django.views import View
-from account.helpers import send_mail_confirmation
-from account.models import User
+from .helpers import send_mail_confirmation
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.shortcuts import redirect

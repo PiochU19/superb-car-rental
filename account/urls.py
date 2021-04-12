@@ -5,6 +5,7 @@ from .views import (
 	UserPermissionsView,
 	UserIdView,
 	ClientDetailView,
+	ClientUpdateView,
 
 	EmailActivateView,
 	PasswordChangeView,
@@ -19,6 +20,7 @@ urlpatterns = [
 	path('user/permissions/', UserPermissionsView.as_view(), name='user-permissions'),
 	path('user/id/', UserIdView.as_view(), name='user-id'),
 	path('user/client/', ClientDetailView.as_view(), name='client-detail'),
+	path('user/client/update/', ClientUpdateView.as_view(), name='client-update'),
 
 	path('activate/<uidb64>/<token>', EmailActivateView.as_view(), name='email-activate'),
 	path('passwordchange/', PasswordChangeView.as_view(), name='password-change'),
