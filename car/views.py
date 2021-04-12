@@ -38,3 +38,21 @@ class CarDetailView(APIView):
 		serializer = CarSerializer(queryset, many=False)
 
 		return Response(serializer.data)
+
+class CarDeleteView(APIView):
+	"""
+	Delete car by given ID
+	"""
+	def get_object(self, id):
+		return Car.objects.get(pk=id)
+
+	def delete(self, request, id):
+		car = self.get_object(id)
+		user = request.user
+
+		if user.is_employee or user.is_superuser:
+			car.delete()
+
+			return Response(status=status.HTTP_204_NO_CONTENT)
+
+		return Response(status=status.HTTP_400_BAD_REQUEST)
