@@ -5,7 +5,7 @@ from account.models import (
 from rents.models import (
 	Rent,
 )
-from car.api.serializers import CarDetailSerializer
+from car.api.serializers import CarSerializer
 
 
 class MakeRentSerializer(serializers.ModelSerializer):
@@ -43,5 +43,5 @@ class RentSerializer(serializers.ModelSerializer):
 		instead of id
 		"""
 		rep = super().to_representation(instance)
-		rep['car'] = CarDetailSerializer(instance.car).data
+		rep['car'] = CarSerializer(instance.car).data
 		return rep
