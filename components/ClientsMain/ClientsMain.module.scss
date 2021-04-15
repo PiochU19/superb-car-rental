@@ -1,0 +1,44 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+$purple: #B100DB;
+
+@font-face {
+	font-family: FiraCode;
+	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
+}
+
+.Container {
+	display: flex;
+	flex-direction: column;
+	padding-top: 60px;
+}
+
+.ClientsMainTitle {
+	color: $purple;
+	font-family: FiraCode;
+	text-align: center;
+}
+
+.ClientMain {
+	display: flex;
+}
+
+.ClientMain div {
+	flex: 4;
+	color: $black;
+	font-family: FiraCode;
+	text-align: center;
+
+	&:nth-child(1), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(9) {
+		flex: 3;
+	}
+}
+
+.SVG {
+	transition: all .2s linear;
+	cursor: pointer;
+
+	&:hover {
+		stroke: $purple;
+	}
+}

@@ -113,50 +113,50 @@ const SignupMain = () => {
 					</div>
 					<div className={styles.signup_inputs}>
 						<div className={styles.signup_input_first}>
-							<input className={styles.signup_input} type='text' id='first_name' placeholder='first name' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='first_name' placeholder='first name' onChange={handleChange} tabindex='1' />
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='email' id='email' placeholder='email' onChange={handleChange} />
+							<input className={styles.signup_input} type='email' id='email' placeholder='email' onChange={handleChange} tabindex='7' />
 						</div>
 					</div>
 					<div className={styles.signup_inputs}>
 						<div className={styles.signup_input_first}>
-							<input className={styles.signup_input} type='text' id='last_name' placeholder='last name' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='last_name' placeholder='last name' onChange={handleChange} tabindex='2'/>
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='text' onFocus={dateType} onBlur={textType} id='birth_day' placeholder='birth day' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' onFocus={dateType} onBlur={textType} id='birth_day' placeholder='birth day' onChange={handleChange} tabindex='8' />
 						</div>
 					</div>
 					<div className={styles.signup_inputs}>
 						<div className={styles.signup_input_first}>
-							<input className={styles.signup_input} type='password' id='password' placeholder='password' onChange={handleChange} />
+							<input className={styles.signup_input} type='password' id='password' placeholder='password' onChange={handleChange} tabindex='3' />
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='text' id='phone_number' placeholder='phone number' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='phone_number' placeholder='phone number' onChange={handleChange} tabindex='9' />
 						</div>
 					</div>
 					<div className={styles.signup_inputs}>
 						<div className={styles.signup_input_first}>
-							<input className={styles.signup_input} type='password' id='passwordconf' placeholder='password confirmation' onChange={handleChange} />
+							<input className={styles.signup_input} type='password' id='passwordconf' placeholder='password confirmation' onChange={handleChange} tabindex='4' />
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='text' id='driver_license' placeholder='driver license' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='driver_license' placeholder='driver license' onChange={handleChange} tabindex='10' />
 						</div>
 					</div>
 					<div className={styles.signup_inputs}>
 						<div className={styles.signup_input_first}>
-							<input className={styles.signup_input} type='text' id='city' placeholder='city' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='city' placeholder='city' onChange={handleChange} tabindex='5' />
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='text' id='postal_code' placeholder='postal code' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='postal_code' placeholder='postal code' onChange={handleChange} tabindex='11' />
 						</div>
 					</div>
 					<div className={styles.signup_inputs}>
 						<div className={styles.signup_input_first}>
-							<input className={styles.signup_input} type='text' id='street' placeholder='street' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='street' placeholder='street' onChange={handleChange} tabindex='6' />
 						</div>
 						<div className={styles.signup_input_second}>
-							<input className={styles.signup_input} type='text' id='street_number' placeholder='street number' onChange={handleChange} />
+							<input className={styles.signup_input} type='text' id='street_number' placeholder='street number' onChange={handleChange} tabindex='12' />
 						</div>
 					</div>
 					<div className={styles.signup_below}>

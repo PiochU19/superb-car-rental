@@ -18,7 +18,7 @@ const CarsMain = () => {
 
 	if (isClient) {
 		useEffect(() => {
-			import('../../axios').then(axios => {
+			import('../../axios.js').then(axios => {
 				const axiosInstance = axios.default;
 
 				axiosInstance
