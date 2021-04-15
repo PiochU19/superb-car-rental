@@ -8,7 +8,8 @@ class IssueSerializer(serializers.ModelSerializer):
 	"""
 	class Meta:
 		model = Issue
-		fields = ('title', 'message', 'email')
+		fields = ('id', 'title', 'message',
+					'email', 'responded')
 
 	def create(self, validated_data):
 		"""

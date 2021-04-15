@@ -9,7 +9,7 @@ class IssueAdmin(admin.ModelAdmin):
 	"""
 	model = Issue
 	search_field = ('id', 'email', 'title',)
-	ordering = ('-responded',)
+	ordering = ('responded',)
 	list_display = ('title', 'email', 'responded',)
 	fieldsets = (
 		('Issue', {'fields': ('title', 'message',)}),

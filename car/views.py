@@ -37,8 +37,8 @@ class CarDetailView(APIView):
 
 	def get(self, request, slug):
 
-		queryset = Car.objects.get(slug=slug)
-		serializer = CarSerializer(queryset, many=False)
+		car = Car.objects.get(slug=slug)
+		serializer = CarSerializer(car, many=False)
 
 		return Response(serializer.data)
 
