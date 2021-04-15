@@ -51,6 +51,11 @@ const ClientsMain = () => {
 		})
 	};
 
+	const isEven = (x) => {
+		if (x % 2 == 0) return true
+		return false
+	};
+
 	return (
 		<>
 			{ loading
@@ -61,37 +66,35 @@ const ClientsMain = () => {
 					<div className={styles.ClientsMainTitle}>
 						<h1>Manage clients</h1>
 					</div>
-					<div>
+					<div className={styles.ParentDiv}>
 						{clients.map((client, index) => (
-							<div key={client.id}>
-								<div className={styles.ClientMain}>
-									<div>
-										<p>{index+1}.</p>
-									</div>
-									<div>
-										<p>{client.first_name} {client.last_name}</p>
-									</div>
-									<div>
-										<p>{client.email}</p>
-									</div>
-									<div>
-										<p>{client.client.phone_number}</p>
-									</div>
-									<div>
-										<p>{client.client.birth_day}</p>
-									</div>
-									<div>
-										<p>{client.client.driver_license}</p>
-									</div>
-									<div>
-										<p>{client.client.street} {client.client.street_number}</p>
-									</div>
-									<div>
-										<p>{client.client.postal_code} {client.client.city}</p>
-									</div>
-									<div>
-										<p><BinSVG className={styles.SVG} id={client.id} onClick={handleDelete}/></p>
-									</div>
+							<div key={client.id} className={styles.ClientMain}>
+								<div>
+									<p>{index+1}.</p>
+								</div>
+								<div>
+									<p>{client.first_name} {client.last_name}</p>
+								</div>
+								<div>
+									<p>{client.email}</p>
+								</div>
+								<div>
+									<p>{client.client.phone_number}</p>
+								</div>
+								<div>
+									<p>{client.client.birth_day}</p>
+								</div>
+								<div>
+									<p>{client.client.driver_license}</p>
+								</div>
+								<div>
+									<p>{client.client.street} {client.client.street_number}</p>
+								</div>
+								<div>
+									<p>{client.client.postal_code} {client.client.city}</p>
+								</div>
+								<div>
+									<p><BinSVG className={styles.SVG} id={client.id} onClick={handleDelete}/></p>
 								</div>
 							</div>
 						))}

@@ -82,29 +82,27 @@ const CarsMain = () => {
 					</div>
 					<div className={styles.Cars}>
 						{cars.map(car => (
-							<div key={car.id}>
-								<div className={styles.CarMain}>
-									<div>
-										<img className={styles.CarImg} src={`http://localhost:8000${car.main_image}`} alt='Samochut'/>
-									</div>
-									<div>
-										<p>{car.brand} {car.model} {car.generation}</p>
-									</div>
-									<div>
-										<p>{car.body_type} {car.year_of_production}</p>
-									</div>
-									<div>
-										<p>{car.engine} {car.fuel_type} {car.hourse_power} hpa</p>
-									</div>
-									<div>
-										<p>{car.price_per_day} PLN</p>
-									</div>
-									<div>
-										<Link href={`/panel/cars/${car.slug}`}><p><EditSVG className={styles.SVG}/></p></Link>
-									</div>
-									<div>
-										<p><BinSVG className={styles.SVG} id={car.id} onClick={handleDelete}/></p>
-									</div>
+							<div key={car.id} className={styles.CarMain}>
+								<div>
+									<img className={styles.CarImg} src={`http://localhost:8000${car.main_image}`} alt='Samochut'/>
+	  							</div>
+								<div>
+									<p>{car.brand} {car.model} {car.generation}</p>
+								</div>
+								<div>
+									<p>{car.body_type} {car.year_of_production}</p>
+								</div>
+								<div>
+									<p>{car.engine} {car.fuel_type} {car.hourse_power} hpa</p>
+								</div>
+								<div>
+									<p>{car.price_per_day} PLN</p>
+								</div>
+								<div>
+									<Link href={`/panel/cars/${car.slug}`}><p><EditSVG className={styles.SVG}/></p></Link>
+								</div>
+								<div>
+									<p><BinSVG className={styles.SVG} id={car.id} onClick={handleDelete}/></p>
 								</div>
 							</div>
 						))}

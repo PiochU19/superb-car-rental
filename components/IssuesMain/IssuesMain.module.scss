@@ -7,34 +7,35 @@ $purple: #B100DB;
 	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
 }
 
-.Container {
+.IssuesMain {
 	display: flex;
-	flex-direction: column;
 	padding-top: 60px;
+	flex-direction: column;
 }
 
-.ClientsMainTitle {
+.IssuesTitle {
 	color: $purple;
 	font-family: FiraCode;
 	text-align: center;
 }
 
-.ClientMain {
+.Issue {
 	display: flex;
-
-	&:nth-child(odd) {
-		background-color: #CAE8D5;
-	}
+	align-items: center;
 }
 
-.ClientMain div {
-	flex: 4;
-	color: $black;
-	font-family: FiraCode;
-	text-align: center;
-
-	&:nth-child(1), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(9) {
-		flex: 3;
+.Issue div {
+	&:nth-child(1) {
+		text-align: right;
+		flex: 2;
+	}
+	&:nth-child(2) {
+		text-align: center;
+		flex: 1;
+	}
+	&:nth-child(3) {
+		text-align: left;
+		flex: 2;
 	}
 }
 

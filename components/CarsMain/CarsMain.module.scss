@@ -55,6 +55,14 @@ $purple: #B100DB;
 
 .CarMain {
 	display: flex;
+	padding-top: 5px;
+
+	&:nth-child(odd) {
+		background-color: #CAE8D5;
+	}
+	&:nth-child(1) {
+		margin-top: 10px;
+	}
 }
 
 .CarMain div {
