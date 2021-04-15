@@ -21,7 +21,10 @@ $purple: #B100DB;
 
 .Issue {
 	display: flex;
-	align-items: center;
+	
+	&:nth-child(odd) {
+		background-color: #CAE8D5;
+	}
 }
 
 .Issue div {
