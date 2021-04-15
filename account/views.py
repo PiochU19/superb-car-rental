@@ -1,4 +1,5 @@
 from rest_framework import status, permissions
+from carrent.permissions import IsEmployee
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from account.api.serializers import (
@@ -8,6 +9,7 @@ from account.api.serializers import (
 	UserIdSerializer,
 	ClientProfileSerializer,
 	ClientUpdateSerializer,
+	ClientsSerializer,
 )
 from .models import User, Client
 from account.helpers import (
@@ -147,6 +149,39 @@ class ClientUpdateView(APIView):
 		serializer = ClientUpdateSerializer(client)
 
 		return Response(serializer.data)
+
+
+class ClientListView(APIView):
+	"""
+	List of all clients
+	"""
+	permission_classes = [permissions.IsAuthenticated, IsEmployee]
+
+	def get(self, request):
+		queryset = User.objects.filter(is_client=True)
+		serializer = ClientsSerializer(queryset, many=True)
+
+		return Response(serializer.data)
+
+
+class ClientDeleteView(APIView):
+	"""
+	Deleting client
+	"""
+	permission_classes = [permissions.IsAuthenticated, IsEmployee]
+
+	def get_object(self, id):
+		return User.objects.get(pk=id)
+
+	def delete(self, request, id):
+		user = self.get_object(id)
+
+		if user:
+			user.delete()
+
+			return Response(status=status.HTTP_204_NO_CONTENT)
+
+		return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 # Imports for email confirmation

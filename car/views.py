@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from rest_framework import status, permissions
+from carrent.permissions import IsEmployee
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -46,14 +47,15 @@ class CarDeleteView(APIView):
 	"""
 	Delete car by given ID
 	"""
+	permission_classes = [permissions.IsAuthenticated, IsEmployee]
+
 	def get_object(self, id):
 		return Car.objects.get(pk=id)
 
 	def delete(self, request, id):
 		car = self.get_object(id)
-		user = request.user
 
-		if user.is_employee or user.is_superuser:
+		if car:
 			car.main_image.delete()
 			car.delete()
 
@@ -66,6 +68,8 @@ class CarCreateView(APIView):
 	"""
 	Creating car
 	"""
+	permission_classes = [permissions.IsAuthenticated, IsEmployee]
+
 	def post(self, request):
 
 		serializer = CarSerializer(data=request.data)
@@ -82,6 +86,8 @@ class CarUpdateView(APIView):
 	"""
 	Updating car
 	"""
+	permission_classes = [permissions.IsAuthenticated, IsEmployee]
+
 	def put(self, request):
 
 		data = request.data

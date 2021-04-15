@@ -6,6 +6,8 @@ from .views import (
 	UserIdView,
 	ClientDetailView,
 	ClientUpdateView,
+	ClientListView,
+	ClientDeleteView,
 
 	EmailActivateView,
 	PasswordChangeView,
@@ -21,6 +23,8 @@ urlpatterns = [
 	path('user/id/', UserIdView.as_view(), name='user-id'),
 	path('user/client/', ClientDetailView.as_view(), name='client-detail'),
 	path('user/client/update/', ClientUpdateView.as_view(), name='client-update'),
+	path('user/clients/', ClientListView.as_view(), name='client-list'),
+	path('user/delete/<int:id>/', ClientDeleteView.as_view(), name='client-delete'),
 
 	path('activate/<uidb64>/<token>', EmailActivateView.as_view(), name='email-activate'),
 	path('passwordchange/', PasswordChangeView.as_view(), name='password-change'),

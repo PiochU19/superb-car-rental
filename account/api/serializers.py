@@ -113,3 +113,15 @@ class ClientUpdateSerializer(serializers.ModelSerializer):
 		model = Client
 		fields = ('user', 'phone_number', 'birth_day', 'city',
 					'street', 'street_number', 'postal_code',)
+
+
+class ClientsSerializer(serializers.ModelSerializer):
+	"""
+	Serializer for list of clients
+	"""
+	client = ClientSerializer(many=False)
+
+	class Meta:
+		model = User
+		fields = ('id', 'first_name', 'last_name',
+					'email', 'client')
