@@ -21,6 +21,8 @@ $purple: #B100DB;
 
 .Issue {
 	display: flex;
+	color: $black;
+	font-family: FiraCode;
 	
 	&:nth-child(odd) {
 		background-color: #CAE8D5;

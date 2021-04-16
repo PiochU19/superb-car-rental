@@ -7,73 +7,52 @@ $purple: #B100DB;
 	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
 }
 
-.RespondMain {
+.Container {
 	padding-top: 60px;
 	display: flex;
 	flex-direction: column;
 }
 
-.RespondTitle {
-	font-family: FiraCode;
+.Title {
 	color: $purple;
-	text-align: center;
-}
-
-.FlxDiv {
-	display: flex;
-}
-
-.FlxDiv div {
-	flex: 1;
-	color: $black;
 	font-family: FiraCode;
-
-	&:nth-child(1) {
-		padding-left: 50px;
-		padding-right: 50px;
-	}
-}
-
-.FlxDivLeft {
-	color: $black;
-
-	& h2 {
-		text-align: center;
-	}
-
-	& p {
-		font-size: 19px;
-	}
-}
-
-.FlxDivRight {
-	color: $black;
 	text-align: center;
+}
+
+.Inputs {
+	display: flex;
+
+	& div {
+		flex: 1;
+
+		&:first-child {
+			text-align: right;
+			margin-right: 30px;
+			margin-bottom: 18px;
+		}
+	}
 }
 
 .Input {
+	padding: 15px;
 	border: 1px solid $black;
 	border-radius: 30px;
 	background-color: transparent;
 	font-family: FiraCode;
+	text-align: center;
 	outline: none;
 	transition: all .2s linear;
-	width: 550px;
-	height: 150px;
-	padding: 25px;
 
 	&:focus {
 		color: $white;
 		background-color: $black;
 	}
-
 	&:focus::-webkit-input-placeholder {
 		color: $white;
 	}
 }
 
 .Button {
-	margin-top: 10px;
 	font-family: FiraCode;
 	padding: 12px 35px 12px 35px;
 	background-color: $black;
@@ -86,4 +65,8 @@ $purple: #B100DB;
 	&:hover {
 		background-color: #B100DB;
 	}
+}
+
+.ButtonDiv {
+	text-align: center;
 }

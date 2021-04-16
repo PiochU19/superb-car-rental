@@ -11,6 +11,10 @@ $purple: #B100DB;
 	padding-top: 60px;
 	display: flex;
 	flex-direction: column;
+
+	& div {
+		text-align: center;
+	}
 }
 
 .Title {
@@ -19,13 +23,24 @@ $purple: #B100DB;
 	text-align: center;
 }
 
-.CarImg {
-	height: 60px;
-	width: 106.5px;
+.Button {
+	width: 125px;
+	height: 46px;
+	font-family: FiraCode;
+	background-color: $black;
+	color: $white;
+	border: none;
 	border-radius: 10px;
+	transition: all .2s linear;
+	outline: none;
+	margin-bottom: 10px;
+
+	&:hover {
+		background-color: #B100DB;
+	}
 }
 
-.Rent {
+.Employee {
 	display: flex;
 	align-items: center;
 
@@ -34,21 +49,21 @@ $purple: #B100DB;
 	}
 
 	& div {
-		text-align: center;
 		color: $black;
 		font-family: FiraCode;
-		flex: 2;
-
+		
 		&:first-child {
+			flex: 4;
 			text-align: right;
 		}
 
-		&:last-child {
-			text-align: left;
+		&:nth-child(2) {
+			flex: 1;
 		}
 
-		&:nth-child(4) {
+		&:last-child {
 			flex: 4;
+			text-align: left;
 		}
 	}
 }
