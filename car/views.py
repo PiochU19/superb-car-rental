@@ -37,10 +37,15 @@ class CarDetailView(APIView):
 
 	def get(self, request, slug):
 
-		car = Car.objects.get(slug=slug)
-		serializer = CarSerializer(car, many=False)
+		try:
+			car = Car.objects.get(slug=slug)
+			serializer = CarSerializer(car, many=False)
 
-		return Response(serializer.data)
+			return Response(serializer.data)
+
+		except Car.DoesNotExist:
+
+			return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class CarDeleteView(APIView):
@@ -50,7 +55,10 @@ class CarDeleteView(APIView):
 	permission_classes = [permissions.IsAuthenticated, IsEmployee]
 
 	def get_object(self, id):
-		return Car.objects.get(pk=id)
+		try:
+			return Car.objects.get(pk=id)
+		except Car.DoesNotExist:
+			return False
 
 	def delete(self, request, id):
 		car = self.get_object(id)
