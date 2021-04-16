@@ -47,13 +47,13 @@ class RegisterClientSerializer(serializers.ModelSerializer):
 		return user
 
 
-class RegisterEmployeeSerializer(serializers.ModelSerializer):
+class EmployeeSerializer(serializers.ModelSerializer):
 	"""
 	Employee registration by API
 	"""
 	class Meta:
 		model = User
-		fields = ('email', 'first_name', 'last_name', 'password',)
+		fields = ('id', 'email', 'first_name', 'last_name', 'password',)
 		extra_kwargs = {'password': {'write_only': True}}
 
 	def create(self, validated_data):
@@ -125,3 +125,27 @@ class ClientsSerializer(serializers.ModelSerializer):
 		model = User
 		fields = ('id', 'first_name', 'last_name',
 					'email', 'client')
+
+
+from rents.models import Rent
+from car.api.serializers import CarSerializer
+
+
+class RentListSerializer(serializers.ModelSerializer):
+	"""
+	Rent Serializer
+	"""
+	class Meta:
+		model = Rent
+		fields = ('id', 'car', 'rent_starts', 'rent_ends',
+					'additional_insurance', 'price')
+
+	def to_representation(self, instance):
+		"""
+		displaying all car data
+		instead of id
+		"""
+		rep = super().to_representation(instance)
+		rep['car'] = CarSerializer(instance.car).data
+		rep['user'] = ClientsSerializer(instance.user).data
+		return rep

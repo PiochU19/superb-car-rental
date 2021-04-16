@@ -6,7 +6,10 @@ class IsEmployee(permissions.BasePermission):
 	Permission for employee
 	"""
 	def has_permission(self, request, view):
-		return request.user.is_employee
+		user = request.user
+
+		if user and user.is_authenticated:
+			return user.is_employee
 
 
 class IsSuperuser(permissions.BasePermission):
@@ -17,4 +20,4 @@ class IsSuperuser(permissions.BasePermission):
 		user = request.user
 
 		if user and user.is_authenticated:
-			return user.is_employee
+			return user.is_superuser

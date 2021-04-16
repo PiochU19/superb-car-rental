@@ -1,10 +1,11 @@
 from rest_framework import status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from carrent.permissions import IsEmployee
 from .models import Rent
 from rents.api.serializers import (
 	MakeRentSerializer,
-	RentSerializer
+	RentSerializer,
 )
 
 ## Import functions for validations
@@ -14,6 +15,7 @@ from rents.helpers import (
 	create_table,
 	parse_date,
 )
+from account.api.serializers import RentListSerializer
 
 
 class MakeRentView(APIView):
@@ -55,9 +57,23 @@ class RentDeleteView(APIView):
 		rent = self.get_object(id)
 		user = request.user
 
-		if rent.user == user:
+		if rent.user == user or user.is_employee:
 			rent.delete()
 
 			return Response(status=status.HTTP_204_NO_CONTENT)
 
-		return Response(status=status.HTTP_400_BAD_REQUEST)
+		return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+class RentListView(APIView):
+	"""
+	List of all rents
+	"""
+	permission_classes = [permissions.IsAuthenticated, IsEmployee]
+
+	def get(self, request):
+		queryset = Rent.objects.all()
+
+		serializer = RentListSerializer(queryset, many=True)
+
+		return Response(serializer.data)

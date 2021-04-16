@@ -1,25 +1,28 @@
 from rest_framework import status, permissions
-from carrent.permissions import IsEmployee
+from carrent.permissions import (
+		IsEmployee,
+		IsSuperuser,
+	)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from account.api.serializers import (
-	RegisterClientSerializer,
-	RegisterEmployeeSerializer,
-	UserPermissionsSerializer,
-	UserIdSerializer,
-	ClientProfileSerializer,
-	ClientUpdateSerializer,
-	ClientsSerializer,
-)
+		RegisterClientSerializer,
+		EmployeeSerializer,
+		UserPermissionsSerializer,
+		UserIdSerializer,
+		ClientProfileSerializer,
+		ClientUpdateSerializer,
+		ClientsSerializer,
+	)
 from .models import User, Client
 from account.helpers import (
-	send_mail_password_reset,
-	password_check,
-)
+		send_mail_password_reset,
+		password_check,
+	)
 from .tokens import (
-	token_generator,
-	token_password_reset_generator,
-)
+		token_generator,
+		token_password_reset_generator,
+	)
 
 
 class RegisterClientView(APIView):
@@ -51,15 +54,19 @@ class RegisterEmployeeView(APIView):
 	"""
 	Employee Registration
 	"""
+	permission_classes = [permissions.AllowAny]
 	def post(self, request):
 		data = request.data
 
-		serializer = RegisterEmployeeSerializer(data=data)
+		serializer = EmployeeSerializer(data=data)
 
 		if serializer.is_valid():
-			serializer.save()
+			if password_check(data['password']):
+				serializer.save()
 
-			return Response("Account created", status=status.HTTP_201_CREATED)
+				return Response("Account created", status=status.HTTP_201_CREATED)
+
+			return Response('Password is too weak', status=status.HTTP_400_BAD_REQUEST)
 
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -182,6 +189,20 @@ class ClientDeleteView(APIView):
 			return Response(status=status.HTTP_204_NO_CONTENT)
 
 		return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class EmployeeListView(APIView):
+	"""
+	List of all employees
+	"""
+	permission_classes = [permissions.IsAuthenticated, IsSuperuser]
+
+	def get(self, request):
+		queryset = User.objects.filter(is_employee=True)
+
+		serializer = EmployeeSerializer(queryset, many=True)
+
+		return Response(serializer.data)
 
 
 # Imports for email confirmation
