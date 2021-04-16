@@ -15,7 +15,7 @@ class TestCarView(APITestCase):
 		"""
 		sets 'fake' obj
 		"""
-		car = Car.objects.create(
+		Car.objects.create(
 			brand='Volkswagen',
 			model='Passat',
 			generation='B6',
@@ -159,6 +159,64 @@ class TestCarView(APITestCase):
 		response = self.client.post(url, data)
 		self.assertEqual(response.status_code, 400)
 
+	def test_car_update_view(self):
+		"""
+		tests CarUpdateView
+		"""
+		url = reverse('car:car-update')
+		data = {
+			'id': 1,
+			'brand': 'Audi',
+			'model': 'A4',
+			'generation': 'B8',
+			'engine': 2.4,
+			'year_of_production': 2017,
+			'body_type': 'Sedan',
+			'fuel_type': 'Petrol',
+			'hourse_power': 212,
+			'price_per_day': 200,
+		}
+
+		## unauth
+		response = self.client.put(url, data)
+		self.assertEqual(response.status_code, 401)
+
+		## client
+		user = User.objects.get(pk=1)
+		self.client.force_authenticate(user)
+		response = self.client.put(url, data)
+		self.assertEqual(response.status_code, 403)
+
+		## employee
+		data['main_image'] = File(open('media/test/test.jpg', 'rb'))
+		user = User.objects.get(pk=2)
+		self.client.force_authenticate(user)
+		response = self.client.put(url, data)
+		self.assertEqual(response.status_code, 200)
+
+		car = Car.objects.get(pk=1)
+		self.assertEqual(str(car), 'audi-a4-2017-24')
+
+		## deleting image
+		car.main_image.delete()
+
+	def test_car_update_view_should_fail(self):
+		"""
+		tests CarUpdateView
+		test shoudl fail
+		"""
+		url = reverse('car:car-update')
+		data = {
+			'id': 1,
+			'brand': 'Audi',
+			'model': 'A4',
+		}
+
+		data['main_image'] = File(open('media/test/test.jpg', 'rb'))
+		user = User.objects.get(pk=2)
+		self.client.force_authenticate(user)
+		response = self.client.put(url, data)
+		self.assertEqual(response.status_code, 400)
 
 
 class TestCarModel(TestCase):
