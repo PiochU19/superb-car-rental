@@ -83,3 +83,12 @@ $purple: #B100DB;
 		background-color: #B100DB;
 	}
 }
+
+.SVG {
+	transition: all .2s linear;
+	cursor: pointer;
+
+	&:hover {
+		stroke: $purple;
+	}
+}

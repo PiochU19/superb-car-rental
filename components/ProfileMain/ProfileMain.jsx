@@ -170,7 +170,7 @@ const ProfileMain = () => {
 									<div>
 										{ valid_date(rent.rent_starts)
 											?
-											<DeleteSVG onClick={handleDelete} id={rent.id}/>
+											<DeleteSVG className={styles.SVG} onClick={handleDelete} id={rent.id}/>
 											:
 											<></>
 										}

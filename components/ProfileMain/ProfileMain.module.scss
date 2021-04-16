@@ -81,3 +81,12 @@ $purple: #B100DB;
 	color: $purple;
 	text-decoration: none;
 }
+
+.SVG {
+	transition: all .2s linear;
+	cursor: pointer;
+
+	&:hover {
+		stroke: $purple;
+	}
+}
