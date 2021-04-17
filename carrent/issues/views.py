@@ -52,11 +52,15 @@ class IssueGetView(APIView):
 	permission_classes = [permissions.IsAuthenticated, IsEmployee]
 
 	def get(self, request, id):
-		issue = Issue.objects.get(pk=id)
+		try:
+			issue = Issue.objects.get(pk=id)
 
-		serializer = IssueSerializer(issue, many=False)
+			serializer = IssueSerializer(issue, many=False)
 
-		return Response(serializer.data)
+			return Response(serializer.data)
+
+		except Issue.DoesNotExist:
+			return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class IssueResponseView(APIView):
@@ -66,10 +70,11 @@ class IssueResponseView(APIView):
 	permission_classes = [permissions.IsAuthenticated, IsEmployee]
 
 	def post(self, request):
-		issue = Issue.objects.get(pk=request.data['id'])
-		user = request.user
+		try:
+			issue = Issue.objects.get(pk=request.data['id'])
+			user = request.user
 
-		if issue:
+			
 			send_issue_response(
 				request,
 				issue.id,
@@ -81,4 +86,8 @@ class IssueResponseView(APIView):
 			issue.responded = True
 			issue.save()
 
-		return Response(status=status.HTTP_200_OK)
+			return Response(status=status.HTTP_200_OK)
+
+		except Issue.DoesNotExist:
+			
+			return Response(status=status.HTTP_400_BAD_REQUEST)
