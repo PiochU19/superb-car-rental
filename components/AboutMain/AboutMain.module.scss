@@ -1,0 +1,39 @@
+$white: #F2F2F2;
+$black: #0D0D0D;
+$purple: #B100DB;
+
+@font-face {
+	font-family: FiraCode;
+	src: url('../../assets/fonts/FiraCode.ttf') format('truetype');
+}
+
+.Container {
+	padding-top: 40px;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 60px;
+
+	& div {
+		text-align: center;
+		font-family: FiraCode;
+	}
+}
+
+.Title {
+	color: $purple;
+}
+
+.DescMyself {
+	color: $black;
+
+}
+
+.SVG {
+	transition: all .2s linear;
+	stroke: $black;
+
+	&:hover {
+		stroke: $purple;
+		cursor: pointer;
+	}
+}
