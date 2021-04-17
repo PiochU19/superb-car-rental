@@ -4,11 +4,11 @@ from carrent.permissions import IsEmployee
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from car.api.serializers import (
+from carrent.car.api.serializers import (
 	CarSerializer,
 )
 
-from car.models import (
+from carrent.car.models import (
 	Car,
 )
 

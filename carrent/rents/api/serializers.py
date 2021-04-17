@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from account.models import (
+from carrent.account.models import (
 	User,
 )
-from rents.models import (
+from carrent.rents.models import (
 	Rent,
 )
-from car.api.serializers import CarSerializer
+from carrent.car.api.serializers import CarSerializer
 
 
 class MakeRentSerializer(serializers.ModelSerializer):

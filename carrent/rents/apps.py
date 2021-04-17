@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class RentsConfig(AppConfig):
-    name = 'rents'
+    name = 'carrent.rents'

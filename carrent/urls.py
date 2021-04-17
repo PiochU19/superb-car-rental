@@ -9,16 +9,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 # account URLs import
-    path('api/', include('account.urls')),
+    path('api/', include('carrent.account.urls')),
 
 # car URLs import
-    path('api/car/', include('car.urls')),
+    path('api/car/', include('carrent.car.urls')),
 
 # rents URLs import
-    path('api/rent/', include('rents.urls')),
+    path('api/rent/', include('carrent.rents.urls')),
 
 # issues URLs import
-    path('api/issue/', include('issues.urls')),
+    path('api/issue/', include('carrent.issues.urls')),
 
 # JSON Web Token Endpoints
     path('api/token/', TokenObtainPairView.as_view()),

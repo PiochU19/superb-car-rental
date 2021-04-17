@@ -5,7 +5,7 @@ from carrent.permissions import (
 	)
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from account.api.serializers import (
+from carrent.account.api.serializers import (
 		RegisterClientSerializer,
 		EmployeeSerializer,
 		UserPermissionsSerializer,
@@ -15,7 +15,7 @@ from account.api.serializers import (
 		ClientsSerializer,
 	)
 from .models import User, Client
-from account.helpers import (
+from carrent.account.helpers import (
 		send_mail_password_reset,
 		password_check,
 	)

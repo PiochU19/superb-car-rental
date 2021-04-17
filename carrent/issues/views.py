@@ -2,7 +2,7 @@ from rest_framework import status, permissions
 from carrent.permissions import IsEmployee
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from issues.api.serializers import (
+from carrent.issues.api.serializers import (
 	IssueSerializer,
 )
 from .models import Issue

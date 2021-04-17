@@ -53,16 +53,16 @@ INSTALLED_APPS = [
     'corsheaders',
 
 # Handling accounts
-    'account',
+    'carrent.account',
 
 # Handling cars
-    'car',
+    'carrent.car',
 
 # Handling rents
-    'rents',
+    'carrent.rents',
 
 # Handling issues sending by clients
-    'issues',
+    'carrent.issues',
 ]
 
 # CORS SETTINGS

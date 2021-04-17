@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from issues.models import Issue
+from carrent.issues.models import Issue
 
 
 class IssueSerializer(serializers.ModelSerializer):

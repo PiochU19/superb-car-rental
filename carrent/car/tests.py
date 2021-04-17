@@ -2,18 +2,18 @@ from django.test import TestCase
 from rest_framework.test import APITestCase
 from django.urls import reverse
 
-from .models import Car
-from account.models import User
+from carrent.car.models import Car
+from carrent.account.models import User
 
 from django.core.files import File
 
 
-class TestCarView(APITestCase):
+class TestCarViews(APITestCase):
 
 	@classmethod
 	def setUpTestData(cls):
 		"""
-		sets 'fake' obj
+		Mock Car obj
 		"""
 		Car.objects.create(
 			brand='Volkswagen',
@@ -224,7 +224,7 @@ class TestCarModel(TestCase):
 	@classmethod
 	def setUpTestData(cls):
 		"""
-		sets 'fake' obj
+		mock Car obj
 		"""
 		Car.objects.create(
 			brand='Volkswagen',

@@ -1,6 +1,6 @@
 from django.db import models
-from account.models import User
-from car.models import Car
+from carrent.account.models import User
+from carrent.car.models import Car
 
 
 class Rent(models.Model):
@@ -24,6 +24,9 @@ class Rent(models.Model):
 		return f"{self.slug}"
 
 	def save(self, *args, **kwargs):
+		if not self.id:
+			super(Rent, self).save()
+
 		self.slug = f"{self.car}-{self.id}"
 
-		super(Rent, self).save(*args, **kwargs)
+		super(Rent, self).save()
