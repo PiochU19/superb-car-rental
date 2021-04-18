@@ -219,7 +219,7 @@ class TestRentModel(TestCase):
 			price=500
 		)
 
-	def test_slug_field(self):
+	def test_rent_slug_field(self):
 		"""
 		tests if slug is made correctly
 		"""

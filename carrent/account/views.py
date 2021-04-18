@@ -54,7 +54,7 @@ class RegisterEmployeeView(APIView):
 	"""
 	Employee Registration
 	"""
-	permission_classes = [permissions.AllowAny]
+	permission_classes = [permissions.IsAuthenticated, IsSuperuser]
 	def post(self, request):
 		data = request.data
 
@@ -135,7 +135,7 @@ class ClientUpdateView(APIView):
 		"""
 		data = request.data
 
-		client = Client.objects.get(user=data['user'])
+		client = Client.objects.get(user=request.user.id)
 
 		serializer = ClientUpdateSerializer(client, data)
 
@@ -178,15 +178,22 @@ class ClientDeleteView(APIView):
 	permission_classes = [permissions.IsAuthenticated, IsEmployee]
 
 	def get_object(self, id):
-		return User.objects.get(pk=id)
+		try:
+			return User.objects.get(pk=id)
+		except User.DoesNotExist:
+			return False
 
 	def delete(self, request, id):
 		user = self.get_object(id)
+		log_user = request.user
 
 		if user:
-			user.delete()
+			if (user.is_client and log_user.is_employee) or (log_user.is_superuser):
+				user.delete()
 
-			return Response(status=status.HTTP_204_NO_CONTENT)
+				return Response(status=status.HTTP_204_NO_CONTENT)
+
+			return Response(status=status.HTTP_403_FORBIDDEN)
 
 		return Response(status=status.HTTP_400_BAD_REQUEST)
 

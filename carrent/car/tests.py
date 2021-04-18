@@ -238,7 +238,7 @@ class TestCarModel(TestCase):
 			price_per_day=300,
 		)
 
-	def test_slug_field(self):
+	def test_car_slug_field(self):
 		"""
 		tests if slug is made correctly
 		"""
