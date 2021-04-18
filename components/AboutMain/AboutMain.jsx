@@ -28,7 +28,7 @@ const AboutMain = () => {
 				</h3>
 			</div>
 			<div>
-				<GitHubSVG className={styles.SVG} />
+				<a href='https://github.com/PiochU19/superb-car-rental'><GitHubSVG className={styles.SVG} /></a>
 			</div>
 		</div>
 	)

@@ -21,20 +21,10 @@ $black: #0D0D0D;
 
 .footer_caption {
 	text-align: right;
-	flex: 3;
+	flex: 5;
 }
 
 .footer_socials {
-	flex: 2;
-	display: flex;
-}
-
-.footer_socials_facebook {
-	flex: 1;
-	text-align: right;
-	margin-right: 5%;
-}
-
-.footer_socials_github {
-	flex: 1;
+	flex: 3;
+	text-align: center;
 }
