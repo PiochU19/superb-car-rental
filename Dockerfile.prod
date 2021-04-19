@@ -56,6 +56,7 @@ RUN addgroup -S carrent && adduser -S carrent -G carrent
 ENV HOME=/home/carrent
 ENV CARRENT_HOME=/home/carrent/backend
 RUN mkdir $CARRENT_HOME
+RUN mkdir $CARRENT_HOME/media
 RUN mkdir $CARRENT_HOME/static
 WORKDIR $CARRENT_HOME
 
