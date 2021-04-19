@@ -54,9 +54,10 @@ RUN addgroup -S carrent && adduser -S carrent -G carrent
 
 # create the appropriate directories
 ENV HOME=/home/carrent
-ENV APP_HOME=/home/carrent/backend
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+ENV CARRENT_HOME=/home/carrent/backend
+RUN mkdir $CARRENT_HOME
+RUN mkdir $CARRENT_HOME/static
+WORKDIR $CARRENT_HOME
 
 # install Pillow dependencies
 RUN apk --no-cache add jpeg-dev \
@@ -81,13 +82,13 @@ COPY --from=builder /usr/src/backend/requirements.txt .
 RUN pip install --no-cache /wheels/*
 
 # copy entrypoint-prod.sh
-COPY ./entrypoint.prod.sh $APP_HOME
+COPY ./entrypoint.prod.sh $CARRENT_HOME
 
 # copy project
-COPY . $APP_HOME
+COPY . $CARRENT_HOME
 
 # chown all the files to the carrent user
-RUN chown -R carrent:carrent $APP_HOME
+RUN chown -R carrent:carrent $CARRENT_HOME
 
 # change to the carrent user
 USER carrent

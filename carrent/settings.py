@@ -161,6 +161,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Pointing to custom User Model
 AUTH_USER_MODEL = 'account.User'
