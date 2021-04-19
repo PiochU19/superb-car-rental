@@ -1,0 +1,45 @@
+########
+# DEPS #
+########
+
+FROM node:alpine AS deps
+
+RUN apk add --no-cache libc6-compat
+WORKDIR /usr/src/frontend
+
+# Installing dependencies
+COPY package*.json /usr/src/frontend/
+RUN npm install
+
+###########
+# BUILDER #
+###########
+
+FROM node:alpine AS builder
+WORKDIR /usr/src/frontend
+COPY . .
+COPY --from=deps /usr/src/frontend/node_modules ./node_modules
+RUN npm run build
+
+##############
+# PRODUCTION #
+##############
+
+FROM node:alpine AS runner
+WORKDIR /usr/src/frontend
+
+ENV NODE_ENV production
+
+COPY --from=builder /usr/src/frontend/public ./public
+COPY --from=builder /usr/src/frontend/.next ./.next
+COPY --from=builder /usr/src/frontend/node_modules ./node_modules
+COPY --from=builder /usr/src/frontend/package.json ./package.json
+
+RUN addgroup -g 1001 -S next
+RUN adduser -S carrent -u 1001
+RUN chown -R carrent:next /usr/src/frontend/.next
+USER carrent
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]

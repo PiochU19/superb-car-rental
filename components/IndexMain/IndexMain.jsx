@@ -16,7 +16,7 @@ const IndexMain = () => {
 	if (isClient) {
 		useEffect(() => {
 			axios
-				.get('http://localhost:8000/api/car/')
+				.get('http://localhost/api/car/')
 				.then((res) => {
 					setCars(res.data);
 					setNotLoading(true);
@@ -54,7 +54,7 @@ const IndexMain = () => {
 						<div key={car.slug}>
 							<Link className={styles.car_link} href={`/rent/${car.slug}`}>
 								<div>
-									<img className={styles.car_image} src={`http://localhost:8000${car.main_image}`} alt='Samochut' />
+									<img className={styles.car_image} src={`http://localhost${car.main_image}`} alt='Samochut' />
 									<p>{car.brand} {car.model}</p>
 									<p>{car.engine} {car.fuel_type} {car.hourse_power} hpa</p>
 								</div>

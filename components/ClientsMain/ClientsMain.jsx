@@ -10,7 +10,7 @@ import BinSVG from '../../assets/svgs/bin.svg';
 const isClient = () => typeof window !== "undefined";
 
 
-const ClientsMain = () => {
+const CLientsMain = () => {
 
 	const [loading, setLoading] = useState(true);
 	const [clients, setClients] = useState('');
@@ -105,4 +105,4 @@ const ClientsMain = () => {
 	)
 }
 
-export default ClientsMain
+export default CLientsMain

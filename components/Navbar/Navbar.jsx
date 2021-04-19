@@ -75,7 +75,7 @@ const Navbar = () => {
 											if (userType === 'admin') {
 												return (
 													<div className={styles.header_middle_svg}>
-														<Link href='http://localhost:8000/admin/' target='_blank'><DatabaseSVG className={styles.svg}/></Link>
+														<Link href='http://localhost/admin/' target='_blank'><DatabaseSVG className={styles.svg}/></Link>
 													</div>
 												)
 											}

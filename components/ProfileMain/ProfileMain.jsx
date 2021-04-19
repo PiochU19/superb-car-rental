@@ -156,7 +156,7 @@ const ProfileMain = () => {
 							{rents.map(rent => (
 								<div className={styles.profileMainRightRent} key={rent.id}>
 									<div>
-										<img className={styles.profileMainRightRentImage} src={`http://localhost:8000${rent.car.main_image}`} alt='Samochut' />
+										<img className={styles.profileMainRightRentImage} src={`http://localhost${rent.car.main_image}`} alt='Samochut' />
 									</div>
 									<div>
 										{rent.car.brand} {rent.car.model} {rent.car.generation}
