@@ -1,6 +1,6 @@
 import HeadComponent from '../../components/HeadComponent/HeadComponent';
 import Navbar from '../../components/Navbar/Navbar';
-import ClientsMain from '../../components/CLientsMain/CLientsMain';
+import ClientsMain from '../../components/ClientsMain/ClientsMain';
 import Footer from '../../components/Footer/Footer';
 
 
