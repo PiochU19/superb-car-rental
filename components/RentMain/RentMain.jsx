@@ -198,7 +198,7 @@ const RentMain = () => {
 					</form>
 					<div className={styles.details_right}>
 						<div>
-							<img className={styles.car_image} src={`http://localhost${car.main_image}`} alt='Samochut' />
+							<img className={styles.car_image} src={`http://34.118.16.167${car.main_image}`} alt='Samochut' />
 						</div>
 						<div>
 							<h1>{car.brand} {car.model} {car.generation} <span className={styles.price_style}>{car.price_per_day} PLN/day</span></h1>

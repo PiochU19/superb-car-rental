@@ -84,7 +84,7 @@ const CarsMain = () => {
 						{cars.map(car => (
 							<div key={car.id} className={styles.CarMain}>
 								<div>
-									<img className={styles.CarImg} src={`http://localhost${car.main_image}`} alt='Samochut'/>
+									<img className={styles.CarImg} src={`http://34.118.16.167${car.main_image}`} alt='Samochut'/>
 	  							</div>
 								<div>
 									<p>{car.brand} {car.model} {car.generation}</p>
