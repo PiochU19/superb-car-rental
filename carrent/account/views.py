@@ -237,7 +237,7 @@ class EmailActivateView(View):
 			user.is_active = True
 			user.save()
 
-			return redirect("http://localhost:3000/login")
+			return redirect("http://34.118.16.167/login")
 		else:
 			return redirect('https://error404.com')
 
