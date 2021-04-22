@@ -1,7 +1,7 @@
 # Superb Car Rental
 Second rental project. This time I used DRF for backend, and Next JS for frontend.
 
-[Live Preview](http://34.118.16.167/) 
+[Live Preview](http://superb-car-rental.pl/) 
 
 Car rental management system:
 * 3 types of user client, employee and admin
