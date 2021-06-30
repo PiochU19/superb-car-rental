@@ -1,6 +1,7 @@
 # Superb Car Rental
 Second rental project. This time I used DRF for backend, and Next JS for frontend.
 
+### Not working!
 [Live Preview Here](http://superb-car-rental.pl/) or [Live Preview Here](http://34.118.16.167/)
 
 Car rental management system:
